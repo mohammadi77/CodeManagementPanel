@@ -25,7 +25,7 @@ function TransactionListTableCells({ transaction }) {
   return (
     <tr>
       <td className="td-Date grid-Date">
-        ` {toPersianWithSeparator(transaction?.date)}
+        {toPersianWithSeparator(transaction?.date)}
       </td>
       <td className={`td-Incom grid-Income ${incomeClass}`}>
         {textIncome}
