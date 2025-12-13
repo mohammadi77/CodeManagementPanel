@@ -1,0 +1,38 @@
+:root {
+  --242D35-color: rgba(36, 45, 53, 1);
+  --3EBD93-color: rgba(62, 189, 147, 1);
+  --EF4E4E-color: rgba(239, 78, 78, 1);
+}
+
+.td-Date,
+.td-Incom,
+.td-Cost {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: right;
+}
+.td- Description {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 20px;
+  letter-spacing: 0%;
+  text-align: right;
+}
+.td-Date,
+.td- Description {
+  color: var(--242D35-color);
+}
+.td-Incom {
+  color: var(--3EBD93-color);
+}
+.td-Cost {
+  color: var(--EF4E4E-color);
+}

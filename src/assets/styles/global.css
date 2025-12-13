@@ -1,0 +1,22 @@
+:root {
+  --DCDFE3-color: rgba(220, 223, 227, 1);
+}
+body {
+  direction: rtl;
+  background-color: var(--DCDFE3-color);
+}
+#root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-VariableFont_wght.ttf") format("truetype");
+}
+@media (max-width: 600px) {
+  #root {
+    height: auto;
+  }
+}
