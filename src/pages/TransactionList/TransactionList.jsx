@@ -1,5 +1,5 @@
-import TransactionListTable from "../../components/TransactionListTable/TransactionListTable.jsx";
-import TransactionListTableCells from "../../components/TransactionListTableCells/TransactionListTableCells.jsx";
+import TransactionListTable from "../../components/TransactionListTable/TransactionListTable";
+import TransactionListTableCells from "../../components/TransactionListTableCells/TransactionListTableCells";
 
 import "./TransactionList.css";
 function TransactionList() {

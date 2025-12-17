@@ -1,20 +1,31 @@
 :root {
   --DCDFE3-color: rgba(220, 223, 227, 1);
+  --242D35-color: rgba(36, 45, 53, 1);
+  --3EBD93-color: rgba(62, 189, 147, 1);
+  --EF4E4E-color: rgba(239, 78, 78, 1);
+  --6B7580-color: rgba(107, 117, 128, 1);
+  --A0CCF8-color: rgba(160, 204, 248, 1);
+  --FAFAFB-color: rgba(250, 250, 251, 1);
 }
 body {
   direction: rtl;
   background-color: var(--DCDFE3-color);
   /* height: 100vh; */
 }
-#root {
+.container {
   display: flex;
   align-items: center;
   justify-content: center;
-  /* height: 100vh; */
+  margin-top: 111px;
 }
 @font-face {
   font-family: "Vazirmatn";
   src: url("../fonts/Vazirmatn-VariableFont_wght.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("../fonts/Vazirmatn-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100;
 }
 @media (max-width: 600px) {
   #root {
