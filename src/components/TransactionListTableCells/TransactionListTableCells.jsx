@@ -1,4 +1,7 @@
 import "./TransactionListTableCells.css";
+import React from "react";
+import TrashIcon from "../../assets/icons/Delete.svg";
+
 function TransactionListTableCells({ transaction }) {
   const toPersianWithSeparator = (number) => {
     if (number === null || number === undefined) return "";
@@ -36,6 +39,9 @@ function TransactionListTableCells({ transaction }) {
       </td>
       <td className="td-Description grid-Description">
         {transaction?.description}
+      </td>
+      <td className="grid-trash">
+        <img src={TrashIcon} id="icon" alt="" />
       </td>
     </tr>
   );

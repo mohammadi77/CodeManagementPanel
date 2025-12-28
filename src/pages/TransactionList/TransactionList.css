@@ -1,15 +1,81 @@
-.div-First {
+.div-Home {
+  width: 768px;
+  border-radius: 16px;
+  padding-top: 36px;
+  padding-right: 24px;
+  padding-bottom: 36px;
+  padding-left: 24px;
+  gap: 24px;
+  opacity: 1;
+  background-color: var(--FFFFFF-color);
+}
+.div-Home > .div-First {
+  gap: 24px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-h2 {
+.div-Home > .div-First > .header-list {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.div-Home > .div-First > table > thead {
+  display: block;
+}
+.div-Home > .div-First > .header-list > h2 {
   font-family: Vazirmatn;
   font-weight: 600;
   font-size: 20px;
   line-height: 100%;
   letter-spacing: 0%;
   color: var(--242D35-color);
+}
+.div-Home > .div-First > .header-list > button {
+  color: var(--FFFFFF-color);
+  background-color: var(--0E33F3-color);
+  cursor: pointer;
+  gap: 10px;
+  opacity: 1;
+  width: 199px;
+  height: 48px;
+  justify-content: center;
+  border-radius: 8px;
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 20px;
+  line-height: 100%;
+  letter-spacing: 0%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: none;
+}
+.div-Home > .div-First > div > button > .icon {
+  width: 24px;
+  height: 24px;
+}
+.empty {
+  height: 676px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--6B7580-color);
+}
+.empty > #icon {
+  width: 24px;
+  height: 24px;
+}
+.empty > p {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 100%;
+  letter-spacing: 0%;
 }

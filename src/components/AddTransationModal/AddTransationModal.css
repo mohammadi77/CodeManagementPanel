@@ -1,0 +1,194 @@
+.add-Transation {
+  display: flex;
+  flex-direction: column;
+}
+.add-Transation > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-Transation > div > h4 {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0%;
+  text-align: right;
+  color: var(--242D35-color);
+}
+.add-Transation > div > img {
+  width: 16px;
+  height: 16px;
+}
+.add-Transation > form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.add-Transation > form > label,
+.add-Transation > form > #type > span,
+.add-Transation > form > label,
+.add-Transation > form > #type {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  text-align: right;
+  color: var(--242D35-color);
+}
+.add-Transation > form > #type > label {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0%;
+  text-align: right;
+}
+.add-Transation > form > #type > div {
+  display: grid;
+  width: 312px;
+  grid-template-columns: 1fr 1fr;
+}
+.add-Transation > form > label > input {
+  width: 312px;
+  height: 40px;
+  opacity: 1;
+  gap: 4px;
+  border-radius: 8px;
+  border: 1px solid var(--DCDFE3-color);
+}
+.add-Transation > form > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 8px;
+}
+.add-Transation > form > div > input[type="submit"] {
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: var(--FFFFFF-color);
+  background-color: var(--0E33F3-color);
+  border: none;
+}
+.add-Transation > form > div > input[type="button"] {
+  border: 1px var(--DCDFE3-color) solid;
+  border-radius: 8px;
+  background-color: var(--FFFFFF-color);
+  color: var(--242D35-color);
+  padding: 8px 16px;
+}
+.add-Transation > form > div > input[type="submit"],
+.add-Transation > form > div > input[type="button"] {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0%;
+}
+.add-Transation > div > #CloseIconM {
+  display: none;
+}
+.date-input {
+  position: relative;
+  width: 312px;
+  height: 40px;
+}
+
+.date-input input[type="date"] {
+  width: 100%;
+  height: 40px;
+  /* padding: 0 12px 0 44px; ← جا برای آیکن */
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  background-color: #fff;
+}
+
+/* آیکن تقویم */
+.date-input::before {
+  content: "";
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: url("/src/assets/icons/Calendar.svg") no-repeat center;
+  background-size: contain;
+  pointer-events: none;
+}
+
+/* placeholder شبیه mm / dd / yyyy */
+.date-input input[type="date"]::-webkit-datetime-edit {
+  color: #9ca3af;
+}
+
+/* وقتی مقدار انتخاب شد */
+.date-input input[type="date"]:valid::-webkit-datetime-edit {
+  color: #111827;
+}
+
+/* مخفی کردن آیکن پیش‌فرض مرورگر */
+/* مخفی کردن آیکن پیش‌فرض */
+.date-input input[type="date"] {
+  appearance: none; /* استاندارد */
+  -webkit-appearance: none; /* وبکیت */
+}
+
+/* فوکوس */
+.date-input input[type="date"]:focus {
+  border-color: #3b82f6;
+}
+@media (max-width: 600px) {
+  .modal-content {
+    top: auto;
+    bottom: 0;
+    left: auto;
+    width: 92% !important;
+    transform: translate(0, 0);
+    -webkit-transform: translate(0, 0);
+    -moz-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+  }
+  .add-Transation > form > label,
+  .add-Transation > form > #type > span,
+  .add-Transation > form > label,
+  .add-Transation > form > #type {
+    font-size: 14px;
+  }
+  .add-Transation > div > h4 {
+    font-size: 14px;
+  }
+  .add-Transation > form > div > input[type="button"],
+  .add-Transation > form > div > input[type="submit"] {
+    width: 100%;
+  }
+  .add-Transation > form > #type > div,
+  .add-Transation > form > label > input,
+  .date-input {
+    width: 240px;
+  }
+  .add-Transation > div > #CloseIconD {
+    display: none;
+  }
+  .add-Transation > div > #CloseIconM {
+    display: flex;
+  }
+  .add-Transation > div {
+    justify-content: center;
+    flex-direction: column;
+  }
+}

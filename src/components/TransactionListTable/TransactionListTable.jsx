@@ -1,5 +1,5 @@
-import { Children } from "react";
 import "./TransactionListTable.css";
+import React from "react";
 
 function TransactionListTable({ children }) {
   return (
@@ -10,6 +10,7 @@ function TransactionListTable({ children }) {
           <th className="grid-Income">درآمد (تومان)</th>
           <th className="grid-Cost">هزینه (تومان)</th>
           <th className="grid-Description">شرح</th>
+          <td></td>
         </tr>
       </thead>
       <tbody>{children}</tbody>

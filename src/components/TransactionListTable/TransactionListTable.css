@@ -1,6 +1,7 @@
 table {
   width: 100%;
   border-collapse: collapse;
+  height: 676px;
 }
 thead {
   font-family: Vazirmatn;
@@ -20,8 +21,8 @@ td {
 }
 tr {
   display: grid;
-  grid-template-areas: "grid-Date grid-Income grid-Cost grid-Description";
-  grid-template-columns: repeat(3, 23%) 31%;
+  grid-template-areas: "grid-Date grid-Income grid-Cost grid-Description grid-trash";
+  grid-template-columns: repeat(3, 23%) 27% 4%;
   padding: 1rem 4px;
 }
 .grid-Date {
@@ -39,7 +40,14 @@ tr {
 .hide-on-mobile {
   display: table-cell;
 }
-
+.grid-trash {
+  grid-area: grid-trash;
+  width: 25px;
+}
+.grid-trash > img {
+  width: 24 px;
+  height: 24px;
+}
 tbody {
   display: flex;
   flex-direction: column;
@@ -65,7 +73,7 @@ span {
     justify-content: end;
   }
   tr {
-    grid-template-areas: "grid-Date show-on-mobile " "grid-Description grid-Description";
+    grid-template-areas: "grid-Date show-on-mobile " "grid-Description grid-trash";
     grid-template-columns: repeat(2, 1fr);
 
     border-radius: 8px;
@@ -76,5 +84,11 @@ span {
     gap: 10px;
     opacity: 1;
     background-color: var(--FAFAFB-color);
+  }
+  .grid-trash {
+    justify-self: flex-end;
+  }
+  .div-Home > .div-First > table > thead {
+    display: none;
   }
 }
