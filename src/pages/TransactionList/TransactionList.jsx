@@ -18,7 +18,7 @@ function TransactionList({ data, dataDelete, dataAdd }) {
         <div className="div-First">
           <div className="header-list">
             <h2>تراکنش ها</h2>
-            <button onClick={toggleAddModal}>
+            <button onClick={toggleAddModal} className="cursor-pointer ">
               <img src={plus} id="icon" alt="" />
               افزودن تراکنش
             </button>

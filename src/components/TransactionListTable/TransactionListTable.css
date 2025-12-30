@@ -1,9 +1,12 @@
-table {
+.div-Home > .div-First > table {
   width: 100%;
   border-collapse: collapse;
   height: 676px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-thead {
+.div-Home > .div-First > table > thead {
   font-family: Vazirmatn;
   font-weight: 500;
   font-style: Medium;
@@ -48,7 +51,7 @@ tr {
   width: 24 px;
   height: 24px;
 }
-tbody {
+.div-Home > .div-First > .header-list > table > tbody {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -61,6 +64,7 @@ tbody {
     display: flex;
   }
 
+  .div-First > table > thead,
   .div-First > table > thead > tr {
     display: none;
   }

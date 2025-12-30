@@ -34,7 +34,7 @@ function TransactionListTableCells({ data, onDelete }) {
         <td className="td-Date grid-Date">
           {toPersianWithSeparator(data?.date)}
         </td>
-        <td className={`td-Incom grid-Income ${incomeClass}`}>
+        <td className={`td-Income grid-Income ${incomeClass}`}>
           <span> {textIncome}</span>
         </td>
         <td className={`td-Cost grid-Cost ${costClass}`}>
