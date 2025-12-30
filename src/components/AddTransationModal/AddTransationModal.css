@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
 }
-.add-Transation > div {
+.add-Transation > .header-modal {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-.add-Transation > div > h4 {
+.add-Transation > .header-modal > h4 {
   font-family: Vazirmatn;
   font-weight: 500;
   font-style: Medium;
@@ -18,7 +18,7 @@
   text-align: right;
   color: var(--242D35-color);
 }
-.add-Transation > div > img {
+.add-Transation > .header-modal > img {
   width: 16px;
   height: 16px;
 }
@@ -28,9 +28,9 @@
   gap: 20px;
 }
 
-.add-Transation > form > label,
+.add-Transation > form > div > label,
 .add-Transation > form > #type > span,
-.add-Transation > form > label,
+.add-Transation > form > div > label,
 .add-Transation > form > #type {
   display: flex;
   flex-direction: row;
@@ -58,7 +58,7 @@
   width: 312px;
   grid-template-columns: 1fr 1fr;
 }
-.add-Transation > form > label > input {
+.add-Transation > form > div > label > input {
   width: 312px;
   height: 40px;
   opacity: 1;
@@ -66,28 +66,35 @@
   border-radius: 8px;
   border: 1px solid var(--DCDFE3-color);
 }
-.add-Transation > form > div {
+.add-Transation > form > div > small {
+  color: var(--EF4E4E-color);
+  font-size: 13px;
+  display: flex;
+  justify-content: end;
+  margin: 8px 8px;
+}
+.add-Transation > form > .modal-buttons {
   display: flex;
   flex-direction: row;
   justify-content: end;
   gap: 8px;
 }
-.add-Transation > form > div > input[type="submit"] {
+.add-Transation > form > .modal-buttons > button[type="submit"] {
   border-radius: 8px;
   padding: 8px 16px;
   color: var(--FFFFFF-color);
   background-color: var(--0E33F3-color);
   border: none;
 }
-.add-Transation > form > div > input[type="button"] {
+.add-Transation > form > .modal-buttons > button[type="button"] {
   border: 1px var(--DCDFE3-color) solid;
   border-radius: 8px;
   background-color: var(--FFFFFF-color);
   color: var(--242D35-color);
   padding: 8px 16px;
 }
-.add-Transation > form > div > input[type="submit"],
-.add-Transation > form > div > input[type="button"] {
+.add-Transation > form > .modal-buttons > button[type="submit"],
+.add-Transation > form > .modal-buttons > button[type="button"] {
   font-family: Vazirmatn;
   font-weight: 400;
   font-style: Regular;
@@ -95,8 +102,13 @@
   line-height: 22px;
   letter-spacing: 0%;
 }
-.add-Transation > div > #CloseIconM {
+.add-Transation > .header-modal > #CloseIconM {
   display: none;
+}
+.add-Transation > .header-modal > #CloseIconD,
+.add-Transation > .header-modal > #CloseIconM {
+  width: 12px;
+  height: 12px;
 }
 .date-input {
   position: relative;
@@ -151,21 +163,10 @@
 .date-input input[type="date"]:focus {
   border-color: #3b82f6;
 }
-@media (max-width: 600px) {
-  .modal-content {
-    top: auto;
-    bottom: 0;
-    left: auto;
-    width: 92% !important;
-    transform: translate(0, 0);
-    -webkit-transform: translate(0, 0);
-    -moz-transform: translate(0, 0);
-    -ms-transform: translate(0, 0);
-    -o-transform: translate(0, 0);
-  }
-  .add-Transation > form > label,
+@media (max-width: 450px) {
+  .add-Transation > form > div > label,
   .add-Transation > form > #type > span,
-  .add-Transation > form > label,
+  .add-Transation > form > div > label,
   .add-Transation > form > #type {
     font-size: 14px;
   }
@@ -177,18 +178,24 @@
     width: 100%;
   }
   .add-Transation > form > #type > div,
-  .add-Transation > form > label > input,
+  .add-Transation > form > div > label > input,
   .date-input {
     width: 240px;
   }
-  .add-Transation > div > #CloseIconD {
+  .add-Transation > .header-modal > #CloseIconD {
     display: none;
   }
-  .add-Transation > div > #CloseIconM {
+  .add-Transation > .header-modal > #CloseIconM {
     display: flex;
   }
   .add-Transation > div {
     justify-content: center;
+    flex-direction: column;
+  }
+  .add-Transation > form {
+    padding: 8px;
+  }
+  .add-Transation > .header-modal {
     flex-direction: column;
   }
 }

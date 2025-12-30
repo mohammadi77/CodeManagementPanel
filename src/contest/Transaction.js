@@ -84,10 +84,10 @@
 // export default transactions;
 // transactions.js//
 // src/contest/Transaction.js
-const transactions = [];
+// const transactions = [];
 
-export const addTransaction = (transaction) => {
-  transactions.push(transaction);
-};
+// export const addTransaction = (transaction) => {
+//   transactions.push(transaction);
+// };
 
-export const getTransactions = () => transactions;
+// export const getTransactions = () => transactions;

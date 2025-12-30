@@ -1,5 +1,5 @@
 .td-Date,
-.td-Incom,
+.td-Income,
 .td-Cost {
   font-family: Vazirmatn;
   font-weight: 500;
@@ -22,7 +22,7 @@
 .td- Description {
   color: var(--242D35-color);
 }
-.td-Incom {
+.td-Income {
   color: var(--3EBD93-color);
 }
 .td-Cost {

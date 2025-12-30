@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import TransactionListTable from "../../components/TransactionListTable/TransactionListTable";
 import TransactionListTableCells from "../../components/TransactionListTableCells/TransactionListTableCells";
-import { getTransactions } from "../../contest/Transaction";
 import DangerIcon from "../../assets/icons/Danger Circle.svg";
 import plus from "../../assets/icons/Plus.svg";
 import "./TransactionList.css";
 import Modal from "../../components/Modal/Modal";
-function TransactionList() {
-  const [modal, setModal] = useState();
-  const toogleModal = () => {
-    setModal(!modal);
-  };
+import AddTransationModal from "../../components/AddTransationModal/AddTransationModal";
+import Delete from "../../components/Delete/Delete";
+function TransactionList({ data, dataDelete, dataAdd }) {
+  const [modalAdd, setModalAdd] = useState(false);
+  const [modalDelete, setModalDelete] = useState(null);
+  const toggleAddModal = () => setModalAdd(!modalAdd);
 
   return (
     <>
@@ -18,12 +18,12 @@ function TransactionList() {
         <div className="div-First">
           <div className="header-list">
             <h2>تراکنش ها</h2>
-            <button onClick={toogleModal}>
+            <button onClick={toggleAddModal}>
               <img src={plus} id="icon" alt="" />
               افزودن تراکنش
             </button>
           </div>
-          {getTransactions().length === 0 && (
+          {data.length === 0 && (
             <>
               <div className="empty">
                 <img src={DangerIcon} id="icon" alt="" />
@@ -31,16 +31,35 @@ function TransactionList() {
               </div>
             </>
           )}
-          {getTransactions().length !== 0 && (
+          {data.length !== 0 && (
             <TransactionListTable>
-              {getTransactions().map((item, index) => (
-                <TransactionListTableCells key={index} transaction={item} />
+              {data.map((item, index) => (
+                <TransactionListTableCells
+                  key={index}
+                  data={item}
+                  onDelete={() => setModalDelete(index)}
+                />
               ))}
             </TransactionListTable>
-          )}{" "}
+          )}
         </div>
       </div>
-      {modal && <Modal toogleModal={toogleModal} />}
+      {/* مودال افزودن تراکنش */}
+      {modalAdd && (
+        <Modal toogleModal={toggleAddModal}>
+          <AddTransationModal toogleModal={toggleAddModal} dataAdd={dataAdd} />
+        </Modal>
+      )}{" "}
+      {/* مودال حذف تراکنش */}
+      {modalDelete !== null && (
+        <Modal toogleModal={() => setModalDelete(null)}>
+          <Delete
+            id={modalDelete}
+            dataDelete={dataDelete}
+            toogleModal={() => setModalDelete(null)}
+          />
+        </Modal>
+      )}
     </>
   );
 }

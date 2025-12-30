@@ -23,9 +23,7 @@
   flex-direction: row;
   justify-content: space-between;
 }
-.div-Home > .div-First > table > thead {
-  display: block;
-}
+
 .div-Home > .div-First > .header-list > h2 {
   font-family: Vazirmatn;
   font-weight: 600;

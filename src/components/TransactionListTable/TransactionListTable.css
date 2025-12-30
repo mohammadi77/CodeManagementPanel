@@ -53,15 +53,15 @@ tbody {
   flex-direction: column;
   gap: 8px;
 }
-span {
+/* span {
   display: none;
-}
+} */
 @media (max-width: 600px) {
   span {
     display: flex;
   }
 
-  thead {
+  .div-First > table > thead > tr {
     display: none;
   }
   .hide-on-mobile {
@@ -72,7 +72,7 @@ span {
     display: flex;
     justify-content: end;
   }
-  tr {
+  .div-First > table > tbody > tr {
     grid-template-areas: "grid-Date show-on-mobile " "grid-Description grid-trash";
     grid-template-columns: repeat(2, 1fr);
 
@@ -87,8 +87,5 @@ span {
   }
   .grid-trash {
     justify-self: flex-end;
-  }
-  .div-Home > .div-First > table > thead {
-    display: none;
   }
 }

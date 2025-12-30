@@ -1,123 +1,12 @@
-// import "./AddTransationModal.css";
-// import { addTransaction, getTransactions } from "../../contest/Transaction";
-// import React, { useState } from "react";
-// import CloseIcon from "../../assets/icons/Button Close.svg";
-
-// function AddTransationModal({ toogleModal }) {
-//   // state برای فرم
-//   const [formData, setFormData] = useState({
-//     date: "",
-//     amount: "",
-//     type: "income",
-//     description: "",
-//   });
-
-//   // وقتی کاربر input را تغییر داد
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prev) => ({
-//       ...prev,
-//       [name]: value,
-//     }));
-//   };
-
-//   // وقتی فرم submit شد
-//   const handleSubmit = (e) => {
-//     e.preventDefault(); // جلوگیری از reload صفحه
-
-//     // تبدیل amount و type به نام‌های مشابه submit
-//     const submit = {
-//       date: formData.date,
-//       income: formData.type === "income" ? Number(formData.amount) : 0,
-//       cost: formData.type === "expense" ? Number(formData.amount) : 0,
-//       description: formData.description,
-//     };
-
-//     addTransaction(submit); // اضافه کردن تراکنش به آرایه    // اینجا می‌توانی submit را در آرایه یا context ذخیره کنی
-//     console.log(getTransactions());
-//     toogleModal(); // بستن مودال بعد از ثبت
-//   };
-
-//   return (
-//     <div className="add-Transation">
-//       <div>
-//         <h4>افزودن تراکنش</h4>
-//         <img src={CloseIcon} alt="بستن" onClick={toogleModal} />
-//       </div>
-//       <form onSubmit={handleSubmit}>
-//         <label>
-//           تاریخ
-//           <div className="date-input">
-//             <input
-//               type="date"
-//               name="date"
-//               value={formData.date}
-//               onChange={handleChange}
-//               required
-//             />
-//           </div>
-//         </label>
-//         <label>
-//           مبلغ (تومان)
-//           <input
-//             type="number"
-//             name="amount"
-//             value={formData.amount}
-//             onChange={handleChange}
-//             required
-//           />
-//         </label>
-//         <div id="type">
-//           <span>نوع تراکنش</span>
-//           <div>
-//             <label>
-//               <input
-//                 type="radio"
-//                 name="type"
-//                 value="income"
-//                 checked={formData.type === "income"}
-//                 onChange={handleChange}
-//               />
-//               درآمد
-//             </label>
-//             <label>
-//               <input
-//                 type="radio"
-//                 name="type"
-//                 value="expense"
-//                 checked={formData.type === "expense"}
-//                 onChange={handleChange}
-//               />
-//               هزینه
-//             </label>
-//           </div>
-//         </div>
-//         <label>
-//           شرح
-//           <input
-//             type="text"
-//             name="description"
-//             value={formData.description}
-//             onChange={handleChange}
-//           />
-//         </label>
-//         <div>
-//           <input type="button" onClick={toogleModal} value="انصراف" />
-//           <input type="submit" value="ثبت" />
-//         </div>
-//       </form>
-//     </div>
-//   );
-// }
-
-// export default AddTransationModal;
 import React, { useState } from "react";
 import CloseIconD from "../../assets/icons/Button Close.svg";
 import CloseIconM from "../../assets/icons/Line 1.svg";
 import "./AddTransationModal.css";
-import { addTransaction } from "../../contest/Transaction";
 
-function AddTransationModal({ toogleModal }) {
+function AddTransationModal({ toogleModal, dataAdd }) {
+  const [errorDate, setErrorDate] = useState("");
+  const [errorCost, setErrorCost] = useState("");
+  const [errorDic, setErrorDic] = useState("");
   const [formData, setFormData] = useState({
     date: "",
     amount: "",
@@ -125,37 +14,68 @@ function AddTransationModal({ toogleModal }) {
     description: "",
   });
 
-  const handleChange = (e) => {
+  const inputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
 
+    setErrorDate("");
+    setErrorCost("");
+    setErrorDic("");
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const submit = {
+    let hasError = false;
+
+    if (!formData.date) {
+      setErrorDate("تاریخ را وارد کنید");
+      hasError = true;
+    }
+
+    if (
+      formData.amount === "" ||
+      isNaN(formData.amount) ||
+      Number(formData.amount) < 0
+    ) {
+      setErrorCost("مبلغ معتبر وارد کنید");
+      hasError = true;
+    }
+
+    if (!formData.description) {
+      setErrorDic("توضیحات را وارد کنید");
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    const newData = {
       date: formData.date,
       income: formData.type === "income" ? Number(formData.amount) : 0,
       cost: formData.type === "expense" ? Number(formData.amount) : 0,
       description: formData.description,
     };
 
-    addTransaction(submit);
+    dataAdd(newData);
     toogleModal();
+
+    setErrorDate("");
+    setErrorCost("");
+    setErrorDic("");
   };
 
   return (
     <div className="add-Transation">
       <div className="header-modal">
-        {" "}
         <img
           src={CloseIconM}
           alt="بستن"
           onClick={toogleModal}
           id="CloseIconM"
+          className="cursor-pointer "
         />
         <h4>افزودن تراکنش</h4>
         <img
@@ -163,31 +83,38 @@ function AddTransationModal({ toogleModal }) {
           alt="بستن"
           onClick={toogleModal}
           id="CloseIconD"
+          className="cursor-pointer "
         />
       </div>
+
       <form onSubmit={handleSubmit}>
-        <label>
-          تاریخ
-          <div className="date-input">
+        <div>
+          <label htmlFor="date">
+            تاریخ
             <input
+              id="date"
               type="date"
               name="date"
               value={formData.date}
-              onChange={handleChange}
-              required
+              onChange={inputChange}
             />
-          </div>
-        </label>
-        <label>
-          مبلغ (تومان)
-          <input
-            type="number"
-            name="amount"
-            value={formData.amount}
-            onChange={handleChange}
-            required
-          />
-        </label>
+          </label>
+          {errorDate && <small className="error-text">{errorDate}</small>}
+        </div>
+        <div>
+          <label htmlFor="amount">
+            مبلغ (تومان)
+            <input
+              type="text"
+              name="amount"
+              value={formData.amount}
+              onChange={inputChange}
+              id="amount"
+            />
+          </label>
+          {errorCost && <small className="error-text">{errorCost}</small>}
+        </div>
+
         <div id="type">
           <span>نوع تراکنش</span>
           <div>
@@ -197,7 +124,7 @@ function AddTransationModal({ toogleModal }) {
                 name="type"
                 value="income"
                 checked={formData.type === "income"}
-                onChange={handleChange}
+                onChange={inputChange}
               />
               درآمد
             </label>
@@ -207,24 +134,40 @@ function AddTransationModal({ toogleModal }) {
                 name="type"
                 value="expense"
                 checked={formData.type === "expense"}
-                onChange={handleChange}
+                onChange={inputChange}
               />
               هزینه
             </label>
           </div>
         </div>
-        <label>
-          شرح
-          <input
-            type="text"
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-          />
-        </label>
+        <div>
+          <label htmlFor="description">
+            شرح
+            <input
+              id="description"
+              type="text"
+              name="description"
+              value={formData.description}
+              onChange={inputChange}
+            />
+          </label>
+          {errorDic && <small className="error-text">{errorDic}</small>}
+        </div>
+
         <div className="modal-buttons">
-          <input type="button" onClick={toogleModal} value="انصراف" />
-          <input type="submit" value="ثبت" />
+          <button
+            className="cursor-pointer "
+            type="button"
+            onClick={toogleModal}
+          >
+            انصراف
+          </button>
+          <button
+            type="submit"
+            className="cursor-pointer   disabled={errorDate || errorCost || errorDic}"
+          >
+            ثبت
+          </button>
         </div>
       </form>
     </div>
