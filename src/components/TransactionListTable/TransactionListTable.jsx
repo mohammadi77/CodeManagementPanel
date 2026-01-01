@@ -1,5 +1,4 @@
 import "./TransactionListTable.css";
-import React from "react";
 
 function TransactionListTable({ children }) {
   return (

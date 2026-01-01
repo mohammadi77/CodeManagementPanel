@@ -61,7 +61,9 @@ input[type="date"]::-ms-expand {
   width: 0;
   height: 0;
 }
-
+h4 {
+  margin: 0;
+}
 @media (max-width: 600px) {
   #root {
     height: auto;

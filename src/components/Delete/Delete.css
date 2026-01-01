@@ -3,74 +3,98 @@
   flex-direction: column;
   gap: 16px;
 }
+
+/* Title */
 .modal-Delete > #title {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.modal-Delete > #title > p {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--242D35-color);
 }
 
 .modal-Delete > #title > #CloseIconM {
   display: none;
 }
+
 .modal-Delete > #title > #CloseIconD,
 .modal-Delete > #title > #CloseIconM {
   width: 22px;
   height: 22px;
 }
-.modal-Delete > #title > p {
-  font-size: 1rem;
-  color: var(--242D35-color);
+
+/* Text */
+.modal-Delete > #text {
   font-family: Vazirmatn;
-}
-.modal-Delete > #buttons {
-  gap: 8px;
-  display: flex;
-  justify-content: end;
-}
-.modal-Delete > #buttons > #submit > span {
-  color: var(--FFFFFF-color);
-}
-.modal-Delete > #buttons > #submit {
-  box-shadow: 0px var(--ComponentsButtonGlobalcontrolOutlineWidth) 0px 0px
-    var(--ComponentsButtonGlobalcontrolOutline);
-  border: 1px solid var(--FFFFFF-color);
-  border-radius: 8px;
-  background-color: var(--EF4E4E-color);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--242D35-color);
 }
 
-.modal-Delete > #buttons > #cansel > span {
-  color: var(--242D35-color);
+/* Buttons */
+.modal-Delete > #buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
 }
-.modal-Delete > #buttons > #cansel {
-  box-shadow: 0px var(--ComponentsButtonGlobalcontrolOutlineWidth) 0px 0px
-    var(--ComponentsButtonGlobalcontrolOutline);
-  border: 1px solid var(--DCDFE3-color);
-  border-radius: 8px;
-  background-color: var(--FFFFFF-color);
-}
+
 .modal-Delete > #buttons > #submit,
 .modal-Delete > #buttons > #cansel {
   padding: 8px 16px;
+  border-radius: 8px;
   font-family: Vazirmatn;
   font-weight: 400;
-  font-style: Regular;
   font-size: 16px;
   line-height: 22px;
-  letter-spacing: 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px var(--ComponentsButtonGlobalcontrolOutlineWidth) 0px 0px
+    var(--ComponentsButtonGlobalcontrolOutline);
 }
-@media (max-width: 600px) {
-  .modal-Delete > #title > #CloseIconD {
-    display: none;
-  }
-  .modal-Delete > #title > #CloseIconM {
-    display: flex;
-  }
+
+.modal-Delete > #buttons > #submit {
+  border: 1px solid var(--FFFFFF-color);
+  background-color: var(--EF4E4E-color);
+  color: var(--FFFFFF-color);
+}
+
+.modal-Delete > #buttons > #cansel {
+  border: 1px solid var(--DCDFE3-color);
+  background-color: var(--FFFFFF-color);
+  color: var(--242D35-color);
+}
+
+/* Responsive */
+@media (max-width: 450px) {
   .modal-Delete > #title {
     flex-direction: column;
     justify-content: center;
   }
+
+  .modal-Delete > #title > #CloseIconD {
+    display: none;
+  }
+
+  .modal-Delete > #title > #CloseIconM {
+    display: flex;
+  }
+
   .modal-Delete > #buttons {
-    justify-content: center;
+    margin: 0 12px;
+  }
+
+  .modal-Delete > #buttons > #submit,
+  .modal-Delete > #buttons > #cansel {
+    width: 50%;
+  }
+
+  .modal-Delete > #text {
+    margin: 0 40px 8px 40px;
   }
 }

@@ -6,25 +6,40 @@
   font-style: Medium;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-align: right;
 }
+
 .td-Description {
   font-family: Vazirmatn;
   font-weight: 400;
   font-style: Regular;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0%;
+  letter-spacing: 0;
   text-align: right;
 }
+
 .td-Date,
-.td- Description {
+.td-Description {
   color: var(--242D35-color);
 }
+
 .td-Income {
   color: var(--3EBD93-color);
 }
+
 .td-Cost {
   color: var(--EF4E4E-color);
+}
+
+#text-Cost {
+  display: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  #text-Cost {
+    display: flex;
+  }
 }

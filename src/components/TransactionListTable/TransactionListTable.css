@@ -1,18 +1,18 @@
 .div-Home > .div-First > table {
   width: 100%;
   border-collapse: collapse;
-  height: 676px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  height: 676px;
 }
+
 .div-Home > .div-First > table > thead {
   font-family: Vazirmatn;
   font-weight: 500;
   font-style: Medium;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0%;
   text-align: right;
   color: var(--242D35-color);
   border-bottom: 1px solid var(--A0CCF8-color);
@@ -22,12 +22,14 @@ th,
 td {
   word-wrap: break-word;
 }
+
 tr {
   display: grid;
   grid-template-areas: "grid-Date grid-Income grid-Cost grid-Description grid-trash";
   grid-template-columns: repeat(3, 23%) 27% 4%;
   padding: 1rem 4px;
 }
+
 .grid-Date {
   grid-area: grid-Date;
 }
@@ -40,25 +42,28 @@ tr {
 .grid-Description {
   grid-area: grid-Description;
 }
+
 .hide-on-mobile {
   display: table-cell;
 }
+
 .grid-trash {
   grid-area: grid-trash;
   width: 25px;
 }
+
 .grid-trash > img {
-  width: 24 px;
+  width: 24px;
   height: 24px;
 }
+
 .div-Home > .div-First > .header-list > table > tbody {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
-/* span {
-  display: none;
-} */
+
+/* Responsive */
 @media (max-width: 600px) {
   span {
     display: flex;
@@ -68,27 +73,31 @@ tr {
   .div-First > table > thead > tr {
     display: none;
   }
+
   .hide-on-mobile {
     display: none;
   }
+
   .show-on-mobile {
     grid-area: show-on-mobile;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
   }
-  .div-First > table > tbody > tr {
-    grid-template-areas: "grid-Date show-on-mobile " "grid-Description grid-trash";
-    grid-template-columns: repeat(2, 1fr);
 
-    border-radius: 8px;
-    padding-top: 14px;
-    padding-right: 16px;
-    padding-bottom: 14px;
-    padding-left: 16px;
+  .div-First > table > tbody > tr {
+    display: grid;
+    grid-template-areas:
+      "grid-Date show-on-mobile"
+      "grid-Description grid-trash";
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    opacity: 1;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    padding: 14px 16px;
     background-color: var(--FAFAFB-color);
+    opacity: 1;
   }
+
   .grid-trash {
     justify-self: flex-end;
   }

@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import { useRef, useState } from "react";
 import CloseIconD from "../../assets/icons/Button Close.svg";
 import CloseIconM from "../../assets/icons/Line 1.svg";
-import "./AddTransationModal.css";
+import CalendarIcon from "../../assets/icons/Calendar.svg";
+import "./AddTransactionModal.css";
 
-function AddTransationModal({ toogleModal, dataAdd }) {
+function AddTransactionModal({ toggleModal, dataAdd }) {
+  const dateRef = useRef(null);
+
   const [errorDate, setErrorDate] = useState("");
   const [errorCost, setErrorCost] = useState("");
   const [errorDic, setErrorDic] = useState("");
+
   const [formData, setFormData] = useState({
     date: "",
     amount: "",
@@ -14,21 +18,37 @@ function AddTransationModal({ toogleModal, dataAdd }) {
     description: "",
   });
 
+  const faToEnNumber = (value) =>
+    value
+      .replace(/۰/g, "0")
+      .replace(/۱/g, "1")
+      .replace(/۲/g, "2")
+      .replace(/۳/g, "3")
+      .replace(/۴/g, "4")
+      .replace(/۵/g, "5")
+      .replace(/۶/g, "6")
+      .replace(/۷/g, "7")
+      .replace(/۸/g, "8")
+      .replace(/۹/g, "9");
+
   const inputChange = (e) => {
     const { name, value } = e.target;
-
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-
+    setFormData((prev) => ({ ...prev, [name]: value }));
     setErrorDate("");
     setErrorCost("");
     setErrorDic("");
   };
+
+  const openDatePicker = () => {
+    if (dateRef.current?.showPicker) {
+      dateRef.current.showPicker();
+    } else {
+      dateRef.current.focus();
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
     let hasError = false;
 
     if (!formData.date) {
@@ -36,11 +56,8 @@ function AddTransationModal({ toogleModal, dataAdd }) {
       hasError = true;
     }
 
-    if (
-      formData.amount === "" ||
-      isNaN(formData.amount) ||
-      Number(formData.amount) < 0
-    ) {
+    const amountEn = faToEnNumber(formData.amount);
+    if (amountEn === "" || isNaN(amountEn) || Number(amountEn) <= 0) {
       setErrorCost("مبلغ معتبر وارد کنید");
       hasError = true;
     }
@@ -52,69 +69,82 @@ function AddTransationModal({ toogleModal, dataAdd }) {
 
     if (hasError) return;
 
-    const newData = {
+    dataAdd({
       date: formData.date,
-      income: formData.type === "income" ? Number(formData.amount) : 0,
-      cost: formData.type === "expense" ? Number(formData.amount) : 0,
+      income: formData.type === "income" ? Number(amountEn) : 0,
+      cost: formData.type === "expense" ? Number(amountEn) : 0,
       description: formData.description,
-    };
+    });
 
-    dataAdd(newData);
-    toogleModal();
-
-    setErrorDate("");
-    setErrorCost("");
-    setErrorDic("");
+    toggleModal();
   };
 
   return (
-    <div className="add-Transation">
+    <div className="add-Transaction">
       <div className="header-modal">
         <img
           src={CloseIconM}
-          alt="بستن"
-          onClick={toogleModal}
           id="CloseIconM"
-          className="cursor-pointer "
+          onClick={toggleModal}
+          className="cursor-pointer"
         />
         <h4>افزودن تراکنش</h4>
         <img
           src={CloseIconD}
-          alt="بستن"
-          onClick={toogleModal}
           id="CloseIconD"
-          className="cursor-pointer "
+          onClick={toggleModal}
+          className="cursor-pointer"
         />
       </div>
 
       <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="date">
+        {/* DATE */}
+        <div className="date-input">
+          <label>
             تاریخ
+            {/* input نمایشی */}
             <input
-              id="date"
-              type="date"
-              name="date"
+              type="text"
+              className="date-input-text"
+              placeholder="   "
               value={formData.date}
-              onChange={inputChange}
+              readOnly
+              onClick={openDatePicker}
+            />
+            {/* آیکون */}
+            <img
+              src={CalendarIcon}
+              className="calendar-icon"
+              onClick={openDatePicker}
+            />
+            {/* input واقعی date */}
+            <input
+              type="date"
+              ref={dateRef}
+              className="hidden-date-input"
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, date: e.target.value }))
+              }
             />
           </label>
           {errorDate && <small className="error-text">{errorDate}</small>}
         </div>
+
+        {/* AMOUNT */}
         <div>
-          <label htmlFor="amount">
+          <label>
             مبلغ (تومان)
             <input
               type="text"
               name="amount"
               value={formData.amount}
               onChange={inputChange}
-              id="amount"
             />
           </label>
           {errorCost && <small className="error-text">{errorCost}</small>}
         </div>
 
+        {/* TYPE */}
         <div id="type">
           <span>نوع تراکنش</span>
           <div>
@@ -140,11 +170,12 @@ function AddTransationModal({ toogleModal, dataAdd }) {
             </label>
           </div>
         </div>
+
+        {/* DESCRIPTION */}
         <div>
-          <label htmlFor="description">
+          <label>
             شرح
             <input
-              id="description"
               type="text"
               name="description"
               value={formData.description}
@@ -154,18 +185,16 @@ function AddTransationModal({ toogleModal, dataAdd }) {
           {errorDic && <small className="error-text">{errorDic}</small>}
         </div>
 
+        {/* BUTTONS */}
         <div className="modal-buttons">
           <button
-            className="cursor-pointer "
             type="button"
-            onClick={toogleModal}
+            onClick={toggleModal}
+            className="cursor-pointer"
           >
             انصراف
           </button>
-          <button
-            type="submit"
-            className="cursor-pointer   disabled={errorDate || errorCost || errorDic}"
-          >
+          <button type="submit" className="cursor-pointer">
             ثبت
           </button>
         </div>
@@ -174,4 +203,4 @@ function AddTransationModal({ toogleModal, dataAdd }) {
   );
 }
 
-export default AddTransationModal;
+export default AddTransactionModal;
