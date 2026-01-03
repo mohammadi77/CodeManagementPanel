@@ -1,97 +1,70 @@
+import React from "react";
+import { useState } from "react";
 import TransactionListTable from "../../components/TransactionListTable/TransactionListTable";
 import TransactionListTableCells from "../../components/TransactionListTableCells/TransactionListTableCells";
+import Modal from "../../components/Modal/Modal";
+import AddTransactionModal from "../../components/AddTransactionModal/AddTransactionModal";
+import Delete from "../../components/Delete/Delete";
+
+import DangerIcon from "../../assets/icons/Danger Circle.svg";
+import plus from "../../assets/icons/Plus.svg";
 
 import "./TransactionList.css";
-function TransactionList() {
-  const transactions = [
-    {
-      date: "۱۴۰۴/۰۶/۳۱",
-      income: 3100000,
-      cost: 0,
-      description: "قسط آخر پروژه کاریار",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۲۷",
-      income: 0,
-      cost: 1230000,
-      description: "خرید لباس",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۲۵",
-      income: 17000,
-      cost: 0,
-      description: "سود سپرده",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۲۰",
-      income: 0,
-      cost: 440000,
-      description: "غذا",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۱۴",
-      income: 0,
-      cost: 562200,
-      description: "سوپرمارکت",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۰۶",
-      income: 0,
-      cost: 136000,
-      description: "پارکینگ",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۰۴",
-      income: 0,
-      cost: 55000,
-      description: "شارژایرانسل",
-    },
-    {
-      date: "۱۴۰۴/۰۶/۰۱",
-      income: 5000000,
-      cost: 0,
-      description: "کادو تولد",
-    },
-    {
-      date: "۱۴۰۴/۰۵/۲۵",
-      income: 0,
-      cost: 9800000,
-      description: "دندانپزشکی",
-    },
-    {
-      date: "۱۴۰۴/۰۵/۲۰",
-      income: 0,
-      cost: 250000,
-      description: "غذا",
-    },
-    {
-      date: "۱۴۰۴/۰۵/۱۷",
-      income: 0,
-      cost: 758000,
-      description: "سوپرمارکت",
-    },
-    {
-      date: "۱۴۰۴/۰۵/۱۷",
-      income: 0,
-      cost: 110000,
-      description: "غذا",
-    },
-    {
-      date: "۱۴۰۴/۰۵/۱۶",
-      income: 3100000,
-      cost: 0,
-      description: "قسط سوم پروژه کاریار",
-    },
-  ];
+
+function TransactionList({ data, dataDelete, dataAdd }) {
+  const [modalAdd, setModalAdd] = useState(false);
+  const [modalDelete, setModalDelete] = useState(null);
+  const toggleAddModal = () => setModalAdd(!modalAdd);
+
   return (
-    <div className="div-First">
-      <h2>تراکنش ها</h2>
-      <TransactionListTable>
-        {transactions.map((item, index) => (
-          <TransactionListTableCells key={index} transaction={item} />
-        ))}
-      </TransactionListTable>
-    </div>
+    <>
+      <div className="div-Home">
+        <div className="div-First">
+          <div className="header-list">
+            <h2>تراکنش ها</h2>
+            <button onClick={toggleAddModal} className="cursor-pointer ">
+              <img src={plus} id="icon" alt="" />
+              افزودن تراکنش
+            </button>
+          </div>
+
+          {data.length === 0 ? (
+            <div className="empty">
+              <img src={DangerIcon} id="icon" alt="" />
+              <p>شما هنوز تراکنشی وارد نکرده‌اید</p>
+            </div>
+          ) : (
+            <TransactionListTable>
+              {data.map((item, index) => (
+                <TransactionListTableCells
+                  key={index}
+                  data={item}
+                  onDelete={() => setModalDelete(index)}
+                />
+              ))}
+            </TransactionListTable>
+          )}
+        </div>
+      </div>
+
+      {/* مودال افزودن تراکنش */}
+      {modalAdd && (
+        <Modal toggleModal={toggleAddModal}>
+          <AddTransactionModal toggleModal={toggleAddModal} dataAdd={dataAdd} />
+        </Modal>
+      )}
+
+      {/* مودال حذف تراکنش */}
+      {modalDelete !== null && (
+        <Modal toggleModal={() => setModalDelete(null)}>
+          <Delete
+            id={modalDelete}
+            dataDelete={dataDelete}
+            toggleModal={() => setModalDelete(null)}
+          />
+        </Modal>
+      )}
+    </>
   );
 }
 

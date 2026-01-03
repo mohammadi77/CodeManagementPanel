@@ -1,0 +1,100 @@
+.modal-Delete {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Title */
+.modal-Delete > #title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-Delete > #title > p {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--242D35-color);
+}
+
+.modal-Delete > #title > #CloseIconM {
+  display: none;
+}
+
+.modal-Delete > #title > #CloseIconD,
+.modal-Delete > #title > #CloseIconM {
+  width: 22px;
+  height: 22px;
+}
+
+/* Text */
+.modal-Delete > #text {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--242D35-color);
+}
+
+/* Buttons */
+.modal-Delete > #buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modal-Delete > #buttons > #submit,
+.modal-Delete > #buttons > #cansel {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px var(--ComponentsButtonGlobalcontrolOutlineWidth) 0px 0px
+    var(--ComponentsButtonGlobalcontrolOutline);
+}
+
+.modal-Delete > #buttons > #submit {
+  border: 1px solid var(--FFFFFF-color);
+  background-color: var(--EF4E4E-color);
+  color: var(--FFFFFF-color);
+}
+
+.modal-Delete > #buttons > #cansel {
+  border: 1px solid var(--DCDFE3-color);
+  background-color: var(--FFFFFF-color);
+  color: var(--242D35-color);
+}
+
+/* Responsive */
+@media (max-width: 450px) {
+  .modal-Delete > #title {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .modal-Delete > #title > #CloseIconD {
+    display: none;
+  }
+
+  .modal-Delete > #title > #CloseIconM {
+    display: flex;
+  }
+
+  .modal-Delete > #buttons {
+    margin: 0 12px;
+  }
+
+  .modal-Delete > #buttons > #submit,
+  .modal-Delete > #buttons > #cansel {
+    width: 50%;
+  }
+
+  .modal-Delete > #text {
+    margin: 0 40px 8px 40px;
+  }
+}
