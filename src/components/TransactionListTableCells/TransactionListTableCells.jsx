@@ -1,7 +1,6 @@
-import React, { useState } from "react";
 import "./TransactionListTableCells.css";
 import TrashIcon from "../../assets/icons/Delete.svg";
-import ToPersianWithSeparator from "../../utils/ToPersianWithSeparator";
+import { ToPersianWithSeparator } from "../../utils/ToPersianWithSeparator";
 function TransactionListTableCells({ data, onDelete }) {
   const checkIncome = data?.income == 0;
   const textIncome = checkIncome

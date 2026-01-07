@@ -1,4 +1,3 @@
-import React from "react";
 import { useState } from "react";
 import TransactionListTable from "../../components/TransactionListTable/TransactionListTable";
 import TransactionListTableCells from "../../components/TransactionListTableCells/TransactionListTableCells";
@@ -46,14 +45,12 @@ function TransactionList({ data, dataDelete, dataAdd }) {
           )}
         </div>
       </div>
-
       {/* مودال افزودن تراکنش */}
       {modalAdd && (
         <Modal toggleModal={toggleAddModal}>
           <AddTransactionModal toggleModal={toggleAddModal} dataAdd={dataAdd} />
         </Modal>
       )}
-
       {/* مودال حذف تراکنش */}
       {modalDelete !== null && (
         <Modal toggleModal={() => setModalDelete(null)}>

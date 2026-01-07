@@ -1,4 +1,4 @@
-.dashbord {
+.Dashboard {
   width: 816px;
   height: 120px;
   display: flex;
@@ -9,7 +9,7 @@
   opacity: 1;
 }
 
-.dashbord > p {
+.Dashboard > p {
   font-family: Vazirmatn;
   font-weight: 600;
   font-style: SemiBold;
