@@ -1,0 +1,16 @@
+.sing-in {
+  border-radius: 16px;
+  padding: 36px 24px;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--FFFFFF-color);
+}
+.sing-in > img {
+  width: 45px;
+  height: 64px;
+}
+.sing-in > form {
+  display: flex;
+  flex-direction: column;
+}

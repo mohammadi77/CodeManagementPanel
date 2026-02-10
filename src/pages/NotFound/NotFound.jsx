@@ -1,6 +1,6 @@
 import Logo from "../../assets/images/rafiki.svg";
-import "./Undefined.css";
-function Undefined() {
+import "./NotFound.css";
+function NotFound() {
   return (
     <div className="UndefinedWrapper">
       <div className="Undefined">
@@ -10,4 +10,4 @@ function Undefined() {
     </div>
   );
 }
-export default Undefined;
+export default NotFound;

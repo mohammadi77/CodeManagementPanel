@@ -12,7 +12,7 @@ function Navbar() {
         <ul>
           <li>
             <NavLink
-              to="/Dashboard"
+              to="dashboard"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               داشبورد{" "}
@@ -21,7 +21,7 @@ function Navbar() {
 
           <li>
             <NavLink
-              to="/TransactionList"
+              to="transactionList"
               className={({ isActive }) => (isActive ? "active" : "")}
             >
               لیست هزینه‌ها

@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import TransactionList from "./pages/TransactionList/TransactionList";
 import Dashboard from "./pages/Dashboard/Dashboard";
-import Undefined from "./pages/Undefined/Undefined";
+import NotFound from "./pages/NotFound/NotFound";
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./layout/Navbar/Navbar";
+import MainLayout from "./layout/MainLayout/MainLayout";
+import SingIn from "./pages/SingIn/SingIn";
 
 function App() {
   const [data, setData] = useState(() => {
@@ -31,26 +32,24 @@ function App() {
     localStorage.setItem("transactions", JSON.stringify(data));
   }, [data]);
   return (
-    <>
-      <Navbar />
-
-      <div className="container">
-        <Routes>
-          <Route
-            path="TransactionList"
-            element={
-              <TransactionList
-                data={data}
-                dataDelete={dataDelete}
-                dataAdd={dataAdd}
-              />
-            }
-          />{" "}
-          <Route path="Dashboard" element={<Dashboard />} />{" "}
-          <Route path="*" element={<Undefined />} />
-        </Routes>
-      </div>
-    </>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="signin" element={<SingIn />} />
+        <Route path="*" element={<NotFound />} />
+        <Route
+          path="transactionlist"
+          element={
+            <TransactionList
+              data={data}
+              dataDelete={dataDelete}
+              dataAdd={dataAdd}
+            />
+          }
+        />
+      </Route>
+    </Routes>
   );
 }
 
