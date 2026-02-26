@@ -1,12 +1,13 @@
 .Dashboard {
   width: 816px;
-  height: 120px;
+  height: auto;
   display: flex;
   align-items: center;
   gap: 24px;
   border-radius: 16px;
   background-color: var(--FFFFFF-color);
   opacity: 1;
+  display: block;
 }
 
 .Dashboard > p {
@@ -19,4 +20,79 @@
   text-align: right;
   color: var(--242D35-color);
   padding: 0 24px;
+}
+/* Dashboard.css */
+
+.Dashboard {
+  padding: 20px;
+  font-family: "Vazir", sans-serif;
+  direction: rtl; /* راست‌چین برای زبان فارسی */
+  background-color: #f9f9f9;
+  min-height: 100vh;
+}
+
+.Dashboard h2 {
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 28px;
+}
+
+.totals {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  flex-wrap: wrap; /* برای ریسپانسیو شدن */
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  flex: 1 1 200px; /* حداقل عرض و رشد کارت */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-align: center;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* نمودارها */
+.Dashboard h3 {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #333;
+}
+.Chart {
+  flex: 1 1 400px; /* حداقل عرض نمودار */
+  max-width: 800px;
+  height: 300px;
+}
+/* ریسپانسیو نمودارها */
+@media (max-width: 900px) {
+  .totals {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+  }
 }
