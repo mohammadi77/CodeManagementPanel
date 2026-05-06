@@ -1,15 +1,15 @@
-import React, { useState } from "react";
 import "./TransactionListTableCells.css";
 import TrashIcon from "../../assets/icons/Delete.svg";
-import ToPersianWithSeparator from "../../utils/ToPersianWithSeparator";
-function TransactionListTableCells({ data, onDelete }) {
-  const checkIncome = data?.income == 0;
+import { ToPersianWithSeparator } from "../../utils/ToPersianWithSeparator";
+
+function TransactionListTableCells({ data, onDeleteClick }) {
+  const checkIncome = data?.income === 0;
   const textIncome = checkIncome
     ? " "
     : `${ToPersianWithSeparator(data?.income)}+`;
   const incomeClass = data?.income === 0 ? "hide-on-mobile" : "show-on-mobile";
 
-  const checkCost = data?.cost == 0;
+  const checkCost = data?.cost === 0;
   const textCost = checkCost ? " " : `${ToPersianWithSeparator(data?.cost)}-`;
   const costClass = data?.cost === 0 ? "hide-on-mobile" : "show-on-mobile";
 
@@ -28,7 +28,7 @@ function TransactionListTableCells({ data, onDelete }) {
           src={TrashIcon}
           id="icon"
           alt=""
-          onClick={onDelete}
+          onClick={() => onDeleteClick(data.id)}
           className="cursor-pointer"
         />
       </td>

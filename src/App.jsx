@@ -1,31 +1,25 @@
-import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import MainLayout from "./layout/MainLayout/MainLayout";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import NotFound from "./pages/NotFound/NotFound";
+import SingIn from "./pages/SingIn/SingIn";
 import TransactionList from "./pages/TransactionList/TransactionList";
+import { TransactionProvider } from "./constants/TransactionContext";
 import "./App.css";
-import {
-  getInitialData,
-  addTransaction,
-  deleteTransaction,
-} from "./contest/Transaction";
 
 function App() {
-  const [data, setData] = useState(getInitialData);
-
-  const dataAdd = (formData) => {
-    addTransaction(setData, formData);
-  };
-
-  const dataDelete = (id) => {
-    deleteTransaction(setData, id);
-  };
-
-  useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(data));
-  }, [data]);
-
   return (
-    <div className="container">
-      <TransactionList data={data} dataDelete={dataDelete} dataAdd={dataAdd} />
-    </div>
+    <TransactionProvider>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="signin" element={<SingIn />} />
+          <Route path="*" element={<NotFound />} />
+          <Route path="transactionlist" element={<TransactionList />} />
+        </Route>
+      </Routes>
+    </TransactionProvider>
   );
 }
 

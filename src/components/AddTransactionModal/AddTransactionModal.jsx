@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import CloseIconD from "../../assets/icons/Button Close.svg";
 import CloseIconM from "../../assets/icons/Line 1.svg";
 import CalendarIcon from "../../assets/icons/Calendar.svg";
+import { FaToEnNumber } from "../../utils/faToEnNumber";
 import "./AddTransactionModal.css";
 
 function AddTransactionModal({ toggleModal, dataAdd }) {
@@ -17,19 +18,6 @@ function AddTransactionModal({ toggleModal, dataAdd }) {
     type: "income",
     description: "",
   });
-
-  const faToEnNumber = (value) =>
-    value
-      .replace(/۰/g, "0")
-      .replace(/۱/g, "1")
-      .replace(/۲/g, "2")
-      .replace(/۳/g, "3")
-      .replace(/۴/g, "4")
-      .replace(/۵/g, "5")
-      .replace(/۶/g, "6")
-      .replace(/۷/g, "7")
-      .replace(/۸/g, "8")
-      .replace(/۹/g, "9");
 
   const inputChange = (e) => {
     const { name, value } = e.target;
@@ -55,9 +43,10 @@ function AddTransactionModal({ toggleModal, dataAdd }) {
       setErrorDate("تاریخ را وارد کنید");
       hasError = true;
     }
+    const amountEn = FaToEnNumber(formData.amount);
+    const amountNumber = Number(amountEn);
 
-    const amountEn = faToEnNumber(formData.amount);
-    if (amountEn === "" || isNaN(amountEn) || Number(amountEn) <= 0) {
+    if (!amountEn || isNaN(amountNumber) || amountNumber <= 0) {
       setErrorCost("مبلغ معتبر وارد کنید");
       hasError = true;
     }

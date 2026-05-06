@@ -9,15 +9,17 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json,md}\""
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.1.0",
     "flatpickr": "^4.6.13",
-    "jalaali-js": "^1.2.8",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "react-modern-calendar-datepicker": "^3.1.6"
+    "react-router-dom": "^7.11.0",
+    "rechart": "^0.0.1",
+    "recharts": "^3.7.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.2",

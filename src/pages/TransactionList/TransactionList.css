@@ -61,7 +61,6 @@
 }
 
 .empty {
-  height: 676px;
   display: flex;
   flex-direction: column;
   justify-content: center;
