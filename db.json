@@ -1,0 +1,21 @@
+{
+  "transactions": [
+    {
+      "id": "dYeDx9llyfg",
+      "date": "2026-05-23",
+      "amount": 66666666,
+      "type": "expense",
+      "description": "6666666666666666666666666",
+      "title": "6666666666666666666666666"
+    },
+    {
+      "date": "2026-05-14",
+      "amount": 3,
+      "type": "income",
+      "description": "550",
+      "title": "550",
+      "id": "Np0ucEdlXtg"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}
