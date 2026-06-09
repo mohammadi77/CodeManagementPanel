@@ -1,0 +1,13 @@
+/* Login.css */
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--DCDFE3-color);
+  direction: rtl;
+  padding: 20px;
+  box-sizing: border-box;
+}

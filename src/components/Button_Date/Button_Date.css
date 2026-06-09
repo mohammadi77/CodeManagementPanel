@@ -1,0 +1,65 @@
+/* Date Input */
+#Button_Date .date-input {
+  position: relative;
+  width: 240px;
+  gap: 8px;
+}
+
+#Button_Date .date-input > label {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  leading-trim: NONE;
+  line-height: 24px;
+  letter-spacing: 0%;
+  gap: 8px;
+  display: inline;
+  display: flex;
+  justify-content: space-around;
+}
+
+#Button_Date .date-input-text {
+  width: 186px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: white;
+  /*تضمینپس‌زمینهروشن*/
+  color: black !important;
+  /*تضمینرنگمتن*/
+  border: 1px solid #ccc;
+  font-size: 14px;
+  -webkit-border-radius:;
+  -moz-border-radius:;
+  -ms-border-radius:;
+  -o-border-radius:;
+}
+
+#Button_Date .calendar-icon {
+  position: absolute;
+  left: 12px;
+  top: 20px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+#Button_Date .hidden-date-input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+}
+@media (max-width: 464px) {
+  #Button_Date .date-input {
+    width: 100%;
+    padding: 0 !important;
+  }
+  #Button_Date .date-input-text {
+    width: 80%;
+  }
+}

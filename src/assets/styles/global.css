@@ -1,4 +1,4 @@
-@import url("vazirmatn.css");
+@import url('vazirmatn.css');
 :root {
   --DCDFE3-color: rgba(220, 223, 227, 1);
   --242D35-color: rgba(36, 45, 53, 1);
@@ -10,6 +10,7 @@
   --FFFFFF-color: rgba(255, 255, 255, 1);
   --000000-color: rgba(0, 0, 0, 1);
   --0E33F3-color: rgba(14, 51, 243, 1);
+  --9BA1A8-color: rgba(155, 161, 168, 1);
 }
 body {
   direction: rtl;
@@ -33,30 +34,30 @@ a {
 .cursor-pointer {
   cursor: pointer;
 } /* Chrome, Safari, Edge, Opera */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
 /* Firefox */
-input[type="number"] {
+input[type='number'] {
   -moz-appearance: textfield;
 }
 /* Chrome, Safari, Edge */
-input[type="date"]::-webkit-calendar-picker-indicator {
+input[type='date']::-webkit-calendar-picker-indicator {
   display: none !important;
   -webkit-appearance: none !important;
 }
 
 /* Firefox */
-input[type="date"] {
+input[type='date'] {
   -moz-appearance: textfield !important;
 }
 
 /* Internet Explorer */
-input[type="date"]::-ms-clear,
-input[type="date"]::-ms-expand {
+input[type='date']::-ms-clear,
+input[type='date']::-ms-expand {
   display: none;
   width: 0;
   height: 0;

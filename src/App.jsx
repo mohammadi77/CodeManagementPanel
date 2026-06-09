@@ -1,55 +1,51 @@
-import { useEffect, useState } from "react";
-import TransactionList from "./pages/TransactionList/TransactionList";
-import Dashboard from "./pages/Dashboard/Dashboard";
-import NotFound from "./pages/NotFound/NotFound";
-import "./App.css";
-import { Routes, Route } from "react-router-dom";
-import MainLayout from "./layout/MainLayout/MainLayout";
-import SingIn from "./pages/SingIn/SingIn";
+import { Routes, Route } from 'react-router-dom';
+import MainLayout from './layout/MainLayout/MainLayout';
+import Dashboard from './pages/Dashboard/Dashboard';
+import NotFound from './pages/NotFound/NotFound';
+import Login from './pages/Login/Login';
+import TransactionList from './pages/TransactionList/TransactionList';
+import { TransactionProvider } from './contexts/TransactionContext';
+import ProtectedRoute from './components/ProtectedRoute'; // اضافه کن
 
 function App() {
-  const [data, setData] = useState(() => {
-    const savedData = localStorage.getItem("transactions");
-    return savedData ? JSON.parse(savedData) : [];
-  });
-
-  const dataAdd = (formData) => {
-    const newData = {
-      date: formData.date,
-      income: Number(formData.income) || 0,
-      cost: Number(formData.cost) || 0,
-      description: formData.description,
-    };
-
-    setData((prevData) => [newData, ...prevData]);
-  };
-
-  const dataDelete = (id) => {
-    setData((prevData) => prevData.filter((_, index) => index !== id));
-  };
-
-  useEffect(() => {
-    localStorage.setItem("transactions", JSON.stringify(data));
-  }, [data]);
   return (
-    <Routes>
-      <Route path="/" element={<MainLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="signin" element={<SingIn />} />
+    <TransactionProvider>
+      <Routes>
+        {/* صفحه لاگین خارج از MainLayout (بدون احراز هویت) */}
+        <Route path="/Login" element={<Login />} />
+
+        {/* مسیرهای محافظت شده داخل MainLayout */}
+        <Route path="/" element={<MainLayout />}>
+          <Route
+            index
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="transactionlist"
+            element={
+              <ProtectedRoute>
+                <TransactionList />
+              </ProtectedRoute>
+            }
+          />
+        </Route>
+
+        {/* صفحه 404 */}
         <Route path="*" element={<NotFound />} />
-        <Route
-          path="transactionlist"
-          element={
-            <TransactionList
-              data={data}
-              dataDelete={dataDelete}
-              dataAdd={dataAdd}
-            />
-          }
-        />
-      </Route>
-    </Routes>
+      </Routes>
+    </TransactionProvider>
   );
 }
 

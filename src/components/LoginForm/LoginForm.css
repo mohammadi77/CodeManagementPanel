@@ -1,0 +1,115 @@
+/* LoginForm.css */
+
+.sing-in {
+  border-radius: 16px;
+  width: 368px;
+  max-width: 100%;
+  height: auto;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--FFFFFF-color, #ffffff);
+  direction: rtl;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding-bottom: 24px;
+}
+
+.sing-in > img {
+  width: 45px;
+  height: 64px;
+  align-self: center;
+  margin-top: 24px;
+}
+
+.sing-in > form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 24px;
+}
+
+.sing-in span {
+  font-family: Vazirmatn, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: var(--242D35-color, #242d35);
+}
+
+.sing-in label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sing-in input {
+  width: 100%;
+  max-width: 320px;
+  height: 40px;
+  border-radius: 6px;
+  border: 1px solid var(--DCDFE3-color, #dcdfe3);
+  padding: 0 10px;
+  font-family: inherit;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.sing-in .error {
+  background-color: transparent;
+  color: var(--EF4E4E-color, #ef4e4e);
+  padding: 0;
+  font-size: 12px;
+  margin-top: -4px;
+  text-align: right;
+}
+
+.sing-in button[type='submit'] {
+  width: 100%;
+  max-width: 320px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: var(--0E33F3-color, #0e33f3);
+  color: var(--FFFFFF-color, #ffffff);
+  font-family: Vazirmatn, sans-serif;
+  font-size: 16px;
+  line-height: 22px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.sing-in button[type='submit']:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.sing-in button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* رفع بک‌گراند زرد/نارنجی خودکار کروم */
+.sing-in input:-webkit-autofill,
+.sing-in input:-webkit-autofill:hover,
+.sing-in input:-webkit-autofill:focus,
+.sing-in input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  box-shadow: 0 0 0 30px white inset !important;
+  background-color: white !important;
+  background-image: none !important;
+  border-color: var(--DCDFE3-color, #dcdfe3) !important;
+}
+
+.sing-in input:-webkit-autofill {
+  -webkit-text-fill-color: #000 !important;
+}
+
+@media (max-width: 480px) {
+  .sing-in {
+    width: 100%;
+    margin: 0;
+  }
+  .sing-in > form {
+    padding: 0 16px;
+  }
+}

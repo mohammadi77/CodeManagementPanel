@@ -24,7 +24,7 @@ td {
 
 tr {
   display: grid;
-  grid-template-areas: "grid-Date grid-Income grid-Cost grid-Description grid-trash";
+  grid-template-areas: 'grid-Date grid-Income grid-Cost grid-Description grid-trash';
   grid-template-columns: repeat(3, 23%) 27% 4%;
   padding: 1rem 4px;
 }
@@ -61,9 +61,54 @@ tr {
   flex-direction: column;
   gap: 8px;
 }
+/* سلول ها
+ */
+.td-Date,
+.td-Income,
+.td-Cost {
+  font-family: Vazirmatn;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.td-Description {
+  font-family: Vazirmatn;
+  font-weight: 400;
+  font-style: Regular;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0;
+  text-align: right;
+}
+
+.td-Date,
+.td-Description {
+  color: var(--242D35-color);
+  text-wrap: wrap;
+  word-break: break-word;
+}
+
+.td-Income {
+  color: var(--3EBD93-color);
+}
+
+.td-Cost {
+  color: var(--EF4E4E-color);
+}
+
+#text-Cost {
+  display: none;
+}
 
 /* Responsive */
 @media (max-width: 600px) {
+  #text-Cost {
+    display: flex;
+  }
   span {
     display: flex;
   }
@@ -86,8 +131,8 @@ tr {
   .div-First > table > tbody > tr {
     display: grid;
     grid-template-areas:
-      "grid-Date show-on-mobile"
-      "grid-Description grid-trash";
+      'grid-Date show-on-mobile'
+      'grid-Description grid-trash';
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-bottom: 8px;
@@ -99,5 +144,15 @@ tr {
 
   .grid-trash {
     justify-self: flex-end;
+  }
+  .filter-sort-toolbar {
+    flex-direction: column;
+    align-items: start;
+    gap: 8px;
+  }
+}
+@media (max-width: 464px) {
+  .sort-controls {
+    width: 100%;
   }
 }

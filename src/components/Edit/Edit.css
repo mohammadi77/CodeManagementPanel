@@ -87,13 +87,13 @@
   line-height: 22px;
 }
 
-.add-Transaction > form > .modal-buttons > button[type='submit'] {
+.add-Transaction > form > .modal-buttons > button[type="submit"] {
   background-color: var(--0E33F3-color);
   color: var(--FFFFFF-color);
   border: none;
 }
 
-.add-Transaction > form > .modal-buttons > button[type='button'] {
+.add-Transaction > form > .modal-buttons > button[type="button"] {
   background-color: var(--FFFFFF-color);
   color: var(--242D35-color);
   border: 1px solid var(--DCDFE3-color);
@@ -112,7 +112,7 @@
 /* Date Input */
 .date-input {
   position: relative;
-  width: 100% !important;
+  width: 100%;
 }
 
 .date-input label {
