@@ -1,65 +1,170 @@
-/* Date Input */
+/* =========================
+   BASE WRAPPER
+========================= */
+
+#Button_Date {
+  width: 100%;
+}
+
+/* wrapper */
 #Button_Date .date-input {
   position: relative;
-  width: 240px;
-  gap: 8px;
-}
-
-#Button_Date .date-input > label {
-  font-family: Vazirmatn;
-  font-weight: 400;
-  font-style: Regular;
-  font-size: 16px;
-  leading-trim: NONE;
-  line-height: 24px;
-  letter-spacing: 0%;
-  gap: 8px;
-  display: inline;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  gap: 8px;
 }
 
-#Button_Date .date-input-text {
-  width: 186px;
-  height: 40px;
-  border-radius: 8px;
-  background-color: white;
-  /*تضمینپس‌زمینهروشن*/
-  color: black !important;
-  /*تضمینرنگمتن*/
-  border: 1px solid #ccc;
-  font-size: 14px;
-  -webkit-border-radius:;
-  -moz-border-radius:;
-  -ms-border-radius:;
-  -o-border-radius:;
+/* label */
+#Button_Date .date-input > label {
+  font-family: Vazirmatn, sans-serif;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
 }
+
+/* wrapper input */
+#Button_Date .date-picker-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* =========================
+   INPUT (ALL POSSIBLE CLASSES)
+========================= */
+
+#Button_Date .date-input-text,
+#Button_Date .rmdp-input,
+#Button_Date input.rmdp-input,
+#Button_Date .rmdp-input:focus,
+#Button_Date .rmdp-input:hover,
+#Button_Date input {
+  width: 100%;
+  height: 40px;
+
+  padding-left: 12px;
+  padding-right: 12px;
+
+  border-radius: 8px;
+  border: 1px solid #ccc;
+
+  background: #fff;
+  color: #000 !important;
+
+  font-family: Vazirmatn, sans-serif;
+  font-size: 14px;
+
+  box-sizing: border-box;
+  cursor: pointer;
+  outline: none;
+}
+#Button_Date .date-input > label > span {
+  width: 75px;
+}
+/* focus */
+#Button_Date .rmdp-input:focus {
+  border-color: #4c8bf5 !important;
+  box-shadow: 0 0 0 2px rgba(76, 139, 245, 0.2) !important;
+}
+
+/* hover */
+#Button_Date .rmdp-input:hover {
+  border-color: #999 !important;
+}
+
+/* =========================
+   ICON
+========================= */
 
 #Button_Date .calendar-icon {
   position: absolute;
-  left: 12px;
-  top: 20px;
+  left: 50px;
+  top: 43% !important;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  cursor: pointer;
-}
-
-#Button_Date .hidden-date-input {
-  position: absolute;
-  opacity: 0;
-  width: 1px;
-  height: 1px;
-  left: 0;
-  top: 0;
   pointer-events: none;
 }
+
+/* =========================
+   CALENDAR WRAPPER
+========================= */
+
+#Button_Date .rmdp-wrapper,
+#Button_Date .rmdp-shadow,
+#Button_Date .rmdp-container {
+  font-family: Vazirmatn, sans-serif !important;
+  border-radius: 12px !important;
+  overflow: hidden;
+  width: auto !important;
+}
+
+/* calendar main */
+#Button_Date .rmdp-calendar {
+  background: #fff !important;
+}
+
+/* header */
+#Button_Date .rmdp-header {
+  background: #f7f7f7 !important;
+}
+
+/* days */
+#Button_Date .rmdp-day {
+  border-radius: 6px;
+}
+
+/* selected day */
+#Button_Date .rmdp-day.rmdp-selected {
+  background: #4c8bf5 !important;
+  color: #fff !important;
+}
+
+/* today */
+#Button_Date .rmdp-day.rmdp-today {
+  border: 1px solid #4c8bf5 !important;
+}
+
+/* hover */
+#Button_Date .rmdp-day:hover {
+  background: #eaf1ff !important;
+}
+
+/* disabled days */
+#Button_Date .rmdp-disabled {
+  opacity: 0.4;
+}
+
+/* =========================
+   TIME PICKER (if enabled)
+========================= */
+
+#Button_Date .rmdp-time-picker {
+  background: #fff;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
 @media (max-width: 464px) {
   #Button_Date .date-input {
     width: 100%;
-    padding: 0 !important;
   }
-  #Button_Date .date-input-text {
-    width: 80%;
+
+  #Button_Date .rmdp-input {
+    width: 100%;
+  }
+}
+@media (max-width: 830px) {
+  #Button_Date .rmdp-container {
+    width: 100% !important;
+  }
+  #Button_Date .calendar-icon {
+    left: 8px;
+  }
+  #Button_Date .date-input > label {
+    gap: 18px;
   }
 }

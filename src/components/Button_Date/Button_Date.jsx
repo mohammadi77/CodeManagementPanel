@@ -1,51 +1,35 @@
 // src/components/Button_Date/Button_Date.jsx
-import { useRef } from 'react';
+
 import CalendarIcon from '../../assets/icons/Calendar.svg';
+
 import './Button_Date.css';
 
-function Button_Date({
-  value = '',
-  onChange,
-  label = 'از تاریخ', // prop جدید برای متن لیبل
-  placeholder = '   ', // (اختیاری) قابلیت تغییر placeholder
-}) {
-  const dateRef = useRef(null);
+import DatePicker from 'react-multi-date-picker';
 
-  const openDatePicker = () => {
-    dateRef.current?.showPicker();
-  };
+import persian from 'react-date-object/calendars/persian';
 
-  const handleDateChange = (e) => {
-    const newDate = e.target.value;
-    onChange?.(newDate);
-  };
+import persian_fa from 'react-date-object/locales/persian_fa';
 
+function Button_Date({ value, onChange, label, placeholder = 'انتخاب تاریخ' }) {
   return (
     <div id="Button_Date">
       <div className="date-input">
         <label>
-          <span>{label}</span> {/* استفاده از prop به جای متن ثابت */}
-          <input
-            type="text"
-            className="date-input-text"
-            placeholder={placeholder}
-            value={value}
-            readOnly
-            onClick={openDatePicker}
-          />
-          <img
-            src={CalendarIcon}
-            className="calendar-icon"
-            onClick={openDatePicker}
-            alt="انتخاب تاریخ"
-          />
-          <input
-            type="date"
-            ref={dateRef}
-            className="hidden-date-input"
-            value={value}
-            onChange={handleDateChange}
-          />
+          <span>{label}</span>
+
+          <div className="date-picker-wrapper">
+            <DatePicker
+              value={value}
+              onChange={onChange}
+              calendar={persian}
+              locale={persian_fa}
+              calendarPosition="bottom-right"
+              inputClass="date-input-text"
+              placeholder={placeholder}
+            />
+
+            <img src={CalendarIcon} className="calendar-icon" alt="انتخاب تاریخ" />
+          </div>
         </label>
       </div>
     </div>

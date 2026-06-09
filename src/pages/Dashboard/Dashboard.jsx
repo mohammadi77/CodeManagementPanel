@@ -5,6 +5,7 @@ import MonthlyBarChart from '../../components/MonthlyBarChart/MonthlyBarChart';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
+import { getPersianMonthName } from '../../utils/getPersianMonthName';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -27,17 +28,35 @@ function Dashboard() {
 
   const monthlyData = useMemo(() => {
     const months = {};
+
     transactions.forEach((t) => {
       if (!t.date) return;
-      const month = new Date(t.date).toLocaleString('fa-IR', {
-        month: 'long',
-        year: 'numeric',
-      });
-      if (!months[month]) months[month] = { income: 0, cost: 0 };
-      if (t.type === 'income') months[month].income += t.amount || 0;
-      else if (t.type === 'expense') months[month].cost += t.amount || 0;
+
+      const monthName = getPersianMonthName(t.date);
+
+      if (!monthName) return;
+
+      if (!months[monthName]) {
+        months[monthName] = {
+          income: 0,
+          cost: 0,
+        };
+      }
+
+      if (t.type === 'income') {
+        months[monthName].income += t.amount || 0;
+      }
+
+      if (t.type === 'expense') {
+        months[monthName].cost += t.amount || 0;
+      }
     });
-    return Object.keys(months).map((month) => ({ month, ...months[month] }));
+
+    return Object.keys(months).map((month) => ({
+      month,
+      income: months[month].income,
+      cost: months[month].cost,
+    }));
   }, [transactions]);
 
   return (
@@ -49,10 +68,12 @@ function Dashboard() {
           <h3>کل درآمد</h3>
           <p>{ToPersianWithSeparator(totalIncome)} تومان</p>
         </div>
+
         <div className="card">
           <h3>کل هزینه</h3>
           <p>{ToPersianWithSeparator(totalCost)} تومان</p>
         </div>
+
         <div className="card">
           <h3>تراز نهایی</h3>
           <p>{ToPersianWithSeparator(balance)} تومان</p>
@@ -61,6 +82,7 @@ function Dashboard() {
 
       <div className="charts-grid">
         <DonutChart income={totalIncome} cost={totalCost} />
+
         <MonthlyBarChart data={monthlyData} />
       </div>
     </div>

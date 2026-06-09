@@ -66,6 +66,7 @@
   justify-content: center;
   align-items: center;
   color: var(--6B7580-color);
+  padding-top: 15%;
 }
 
 .empty > #icon {
@@ -73,7 +74,7 @@
   height: 24px;
 }
 
-.empty > p {
+.empty > span {
   font-family: Vazirmatn;
   font-weight: 400;
   font-style: Regular;

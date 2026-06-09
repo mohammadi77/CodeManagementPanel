@@ -55,11 +55,18 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.add-Transaction > form > div > label > input {
-  width: 312px;
-  height: 40px;
-  border-radius: 8px;
-  border: 1px solid var(--DCDFE3-color);
+.add-Transaction > form > div > label > input,
+.rmdp-input {
+  width: 312px !important;
+  height: 40px !important;
+  border-radius: 8px !important;
+  border: 1px solid var(--DCDFE3-color) !important;
+  box-sizing: border-box;
+  font-family: Vazirmatn !important;
+}
+
+.rmdp-container {
+  width: 312px !important;
 }
 
 .add-Transaction > form > div > small {
@@ -110,14 +117,16 @@
 }
 
 /* Date Input */
+
 .date-input {
   position: relative;
-  width: 100% !important;
+  width: 100%;
 }
 
 .date-input label {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -128,7 +137,7 @@
   border: 1px solid var(--DCDFE3-color);
   font-family: Vazirmatn;
   cursor: pointer;
-  background-color: #fff;
+  background: #fff;
 }
 
 .calendar-icon {
@@ -151,7 +160,24 @@
   pointer-events: none;
 }
 
+/* استایل مخصوص تقویم شمسی */
+
+.rmdp-wrapper {
+  font-family: Vazirmatn !important;
+}
+
+.rmdp-day,
+.rmdp-week-day,
+.rmdp-header-values {
+  font-family: Vazirmatn !important;
+}
+
+.rmdp-calendar {
+  direction: rtl;
+}
+
 /* Responsive */
+
 @media (max-width: 450px) {
   .add-Transaction > form > div > label,
   .add-Transaction > form > #type > span,
@@ -165,9 +191,9 @@
 
   .add-Transaction > form > #type > div,
   .add-Transaction > form > div > label > input,
-  .date-input {
-    padding: 0 1rem;
-    width: 240px;
+  .rmdp-container,
+  .rmdp-input {
+    width: 240px !important;
   }
 
   .add-Transaction > .header-modal > #CloseIconD {
@@ -207,6 +233,7 @@
     padding: 0 8px !important;
     margin-top: 0.4rem;
   }
+
   .calendar-icon {
     left: 25px;
   }
