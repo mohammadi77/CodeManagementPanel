@@ -2,6 +2,7 @@ import { useContext, useMemo, useState } from 'react';
 import { TransactionContext } from '../../contexts/TransactionContext';
 import DonutChart from '../../components/DonutChart/DonutChart';
 import MonthlyBarChart from '../../components/MonthlyBarChart/MonthlyBarChart';
+import CustomDropdown from '../../components/CustomDropdown/CustomDropdown';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
@@ -16,12 +17,35 @@ function Dashboard() {
   const [fromMonth, setFromMonth] = useState('');
   const [toMonth, setToMonth] = useState('');
 
+  const yearOptions = [
+    { value: '', label: 'همه سال‌ها' },
+    { value: '1403', label: '1403' },
+    { value: '1404', label: '1404' },
+    { value: '1405', label: '1405' },
+    { value: '1406', label: '1406' },
+  ];
+
+  const monthOptions = [
+    { value: '', label: 'انتخاب ماه' },
+    { value: '1', label: 'فروردین' },
+    { value: '2', label: 'اردیبهشت' },
+    { value: '3', label: 'خرداد' },
+    { value: '4', label: 'تیر' },
+    { value: '5', label: 'مرداد' },
+    { value: '6', label: 'شهریور' },
+    { value: '7', label: 'مهر' },
+    { value: '8', label: 'آبان' },
+    { value: '9', label: 'آذر' },
+    { value: '10', label: 'دی' },
+    { value: '11', label: 'بهمن' },
+    { value: '12', label: 'اسفند' },
+  ];
+
   const filteredTransactions = useMemo(
     () => filterTransactionsByDateRange(transactions, selectedYear, fromMonth, toMonth),
     [transactions, selectedYear, fromMonth, toMonth]
   );
-  console.log('transactions', transactions);
-  console.log('filteredTransactions', filteredTransactions);
+
   const totalIncome = useMemo(
     () =>
       filteredTransactions.reduce((sum, t) => sum + (t.type === 'income' ? t.amount || 0 : 0), 0),
@@ -69,7 +93,6 @@ function Dashboard() {
     }));
   }, [filteredTransactions]);
 
-  // مهم: بعد از همه Hook ها
   if (loading) return <Loading />;
   if (error) return <Error error={error} />;
 
@@ -78,45 +101,26 @@ function Dashboard() {
       <h2>داشبورد تراکنش‌ها</h2>
 
       <div className="filters-row">
-        <select value={selectedYear} onChange={(e) => setSelectedYear(e.target.value)}>
-          <option value="">همه سال‌ها</option>
-          <option value="1403">1403</option>
-          <option value="1404">1404</option>
-          <option value="1405">1405</option>
-          <option value="1406">1406</option>
-        </select>
+        <CustomDropdown
+          value={selectedYear}
+          options={yearOptions}
+          onChange={setSelectedYear}
+          placeholder="همه سال‌ها"
+        />
 
-        <select value={fromMonth} onChange={(e) => setFromMonth(e.target.value)}>
-          <option value="">از ماه</option>
-          <option value="1">فروردین</option>
-          <option value="2">اردیبهشت</option>
-          <option value="3">خرداد</option>
-          <option value="4">تیر</option>
-          <option value="5">مرداد</option>
-          <option value="6">شهریور</option>
-          <option value="7">مهر</option>
-          <option value="8">آبان</option>
-          <option value="9">آذر</option>
-          <option value="10">دی</option>
-          <option value="11">بهمن</option>
-          <option value="12">اسفند</option>
-        </select>
+        <CustomDropdown
+          value={fromMonth}
+          options={monthOptions}
+          onChange={setFromMonth}
+          placeholder="از ماه"
+        />
 
-        <select value={toMonth} onChange={(e) => setToMonth(e.target.value)}>
-          <option value="">تا ماه</option>
-          <option value="1">فروردین</option>
-          <option value="2">اردیبهشت</option>
-          <option value="3">خرداد</option>
-          <option value="4">تیر</option>
-          <option value="5">مرداد</option>
-          <option value="6">شهریور</option>
-          <option value="7">مهر</option>
-          <option value="8">آبان</option>
-          <option value="9">آذر</option>
-          <option value="10">دی</option>
-          <option value="11">بهمن</option>
-          <option value="12">اسفند</option>
-        </select>
+        <CustomDropdown
+          value={toMonth}
+          options={monthOptions}
+          onChange={setToMonth}
+          placeholder="تا ماه"
+        />
       </div>
 
       <div className="totals">

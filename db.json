@@ -2,35 +2,27 @@
   "transactions": [
     {
       "date": "۱۴۰۵/۰۳/۰۵",
-      "amount": 4444,
-      "type": "income",
+      "amount": 10,
+      "type": "expense",
       "description": "غذا",
       "title": "غذا",
       "id": "INc8SAWMi90"
     },
     {
-      "id": "iAJWyK5lNZw",
       "date": "۱۴۰۵/۰۳/۱۱",
-      "amount": 4444,
+      "amount": 50,
       "type": "income",
       "description": "کتاب کتاب کتاب کتاب",
-      "title": "کتاب کتاب کتاب کتاب"
+      "title": "کتاب کتاب کتاب کتاب",
+      "id": "iAJWyK5lNZw"
     },
     {
-      "id": "_gd0FpMGegU",
-      "date": "۱۴۰۴/۰۲/۰۱",
-      "amount": 44,
-      "type": "income",
+      "date": "۱۴۰۵/۰۳/۱۵",
+      "amount": 30,
+      "type": "expense",
       "description": "میز",
-      "title": "میز"
-    },
-    {
-      "id": "Z-mNYIUvzj0",
-      "date": "۱۴۰۵/۰۳/۲۰",
-      "amount": 55,
-      "type": "income",
-      "description": "الان",
-      "title": "الان"
+      "title": "میز",
+      "id": "hbDEFgGLzYk"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

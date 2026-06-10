@@ -1,14 +1,20 @@
 import { useState, useRef, useEffect } from 'react';
 import './SortOrderDropdown.css';
 
+import arrowIcon from '../../assets/icons/Arrow - Down 2.svg';
+
 function SortOrderDropdown({ value, onChange, placeholder = 'انتخاب کنید' }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const options = [
-    { value: 'asc', label: 'صعودی' },
-    { value: 'desc', label: 'نزولی' },
+    { value: '1', label: 'انتخاب کنید' },
     { value: 'newest', label: 'جدیدترین' },
+    { value: 'oldest', label: 'قدیمی‌ترین' },
+    { value: 'highest_expense', label: 'بالاترین هزینه' },
+    { value: 'lowest_expense', label: 'کمترین هزینه' },
+    { value: 'highest_income', label: 'بالاترین درآمد' },
+    { value: 'lowest_income', label: 'کمترین درآمد' },
   ];
 
   const selectedLabel = options.find((opt) => opt.value === value)?.label || placeholder;
@@ -35,22 +41,21 @@ function SortOrderDropdown({ value, onChange, placeholder = 'انتخاب کنی
 
       <button type="button" className="dropdown-btn" onClick={() => setIsOpen(!isOpen)}>
         {selectedLabel}
-        <span className="dropdown-arrow">{isOpen ? ' ▲' : ' ▼'}</span>
+
+        <img src={arrowIcon} alt="arrow" className={`dropdown-arrow ${isOpen ? 'open' : ''}`} />
       </button>
 
-      {isOpen && (
-        <div className="dropdown-menu">
-          {options.map((opt) => (
-            <div
-              key={opt.value}
-              className={`dropdown-item ${value === opt.value ? 'active' : ''}`}
-              onClick={() => handleSelect(opt.value)}
-            >
-              {opt.label}
-            </div>
-          ))}
-        </div>
-      )}
+      <div className={`dropdown-menu ${isOpen ? 'open' : ''}`}>
+        {options.map((opt) => (
+          <div
+            key={opt.value}
+            className={`dropdown-item ${value === opt.value ? 'active' : ''}`}
+            onClick={() => handleSelect(opt.value)}
+          >
+            {opt.label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

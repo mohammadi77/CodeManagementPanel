@@ -3,7 +3,7 @@ import { useState } from 'react';
 import CloseIconD from '../../assets/icons/Button Close.svg';
 import CloseIconM from '../../assets/icons/Line 1.svg';
 import CalendarIcon from '../../assets/icons/Calendar.svg';
-import { FaToEnNumber } from '../../utils/FaToEnNumber ';
+import { FaToEnNumber } from '../../utils/FaToEnNumber';
 import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
 import Modal from '../Modal/Modal';
 import './AddTransactionModal.css';
