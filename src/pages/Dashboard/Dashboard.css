@@ -85,3 +85,17 @@
     font-size: 1.4rem;
   }
 }
+.filters-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.filters-row select {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: inherit;
+  background: #fff;
+}

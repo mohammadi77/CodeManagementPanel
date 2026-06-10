@@ -166,8 +166,12 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
                   }));
 
                   setDisplayDate(convertDigitsToPersian(dateString));
-
                   setErrorDate('');
+
+                  // ✅ بستن تقویم (روش سازگار با نسخه تو)
+                  setTimeout(() => {
+                    document.body.click();
+                  }, 80);
                 }}
                 render={(value, openCalendar) => (
                   <div style={{ position: 'relative' }}>
