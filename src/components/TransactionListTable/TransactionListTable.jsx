@@ -57,7 +57,12 @@ function TransactionListTable({ transactions, onMenuClick }) {
                   <span>{textCost}</span> <span id="text-Cost">تومان</span>
                 </td>
                 <td className="td-Description grid-Description">
-                  {item.description || item.title || '—'}
+                  {(() => {
+                    const text = item.description || item.title || '—';
+                    const words = text.split(' ');
+
+                    return words.length > 3 ? `${words.slice(0, 3).join(' ')}...` : text;
+                  })()}
                 </td>
                 <td className="grid-trash">
                   <img

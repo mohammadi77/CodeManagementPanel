@@ -20,7 +20,7 @@ function Navbar() {
             </NavLink>
           </li>
           <li>
-            <NavLink to="transactionList" className={({ isActive }) => (isActive ? 'active' : '')}>
+            <NavLink to="admin" className={({ isActive }) => (isActive ? 'active' : '')}>
               لیست هزینه‌ها
             </NavLink>
           </li>

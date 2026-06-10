@@ -1,10 +1,10 @@
 import { forwardRef } from 'react';
-import './Modal_Edit_Delete.css';
+import './ModalEditDelete.css';
 
 import IconEdit from '../../assets/icons/Edit Square.svg';
 import IconDelete from '../../assets/icons/Delete.svg';
 
-const Modal_Edit_Delete = forwardRef(({ x, y, id, onEdit, onDelete, onClose }, ref) => {
+const ModalEditDelete = forwardRef(({ x, y, id, onEdit, onDelete, onClose }, ref) => {
   return (
     <div
       ref={ref}
@@ -44,4 +44,4 @@ const Modal_Edit_Delete = forwardRef(({ x, y, id, onEdit, onDelete, onClose }, r
   );
 });
 
-export default Modal_Edit_Delete;
+export default ModalEditDelete;

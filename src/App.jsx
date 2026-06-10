@@ -33,7 +33,7 @@ function App() {
             }
           />
           <Route
-            path="transactionlist"
+            path="admin"
             element={
               <ProtectedRoute>
                 <TransactionList />

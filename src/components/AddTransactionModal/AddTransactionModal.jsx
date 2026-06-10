@@ -147,7 +147,7 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
         <form onSubmit={handleSubmit}>
           {/* DATE */}
           <div className="date-input">
-            <label>
+            <label htmlFor="transaction-date">
               تاریخ
               <DatePicker
                 value={formData.date}
@@ -172,6 +172,7 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
                 render={(value, openCalendar) => (
                   <div style={{ position: 'relative' }}>
                     <input
+                      id="transaction-date"
                       type="text"
                       className="date-input-text"
                       value={value || ''}
@@ -196,9 +197,10 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
 
           {/* AMOUNT */}
           <div>
-            <label>
+            <label htmlFor="transaction-amount">
               مبلغ (تومان)
               <input
+                id="transaction-amount"
                 type="text"
                 name="amount"
                 value={formData.amount}
@@ -215,8 +217,9 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
             <span>نوع تراکنش</span>
 
             <div>
-              <label>
+              <label htmlFor="income">
                 <input
+                  id="income"
                   type="radio"
                   name="type"
                   value="income"
@@ -226,8 +229,9 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
                 درآمد
               </label>
 
-              <label>
+              <label htmlFor="expense">
                 <input
+                  id="expense"
                   type="radio"
                   name="type"
                   value="expense"
@@ -241,9 +245,10 @@ function AddTransactionModal({ toggleModal, dataAdd, dataEdit, editData }) {
 
           {/* DESCRIPTION */}
           <div>
-            <label>
+            <label htmlFor="transaction-description">
               شرح
               <input
+                id="transaction-description"
                 type="text"
                 name="description"
                 value={formData.description}

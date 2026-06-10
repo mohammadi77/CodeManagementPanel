@@ -4,12 +4,12 @@ import Modal from '../../components/Modal/Modal';
 import AddTransactionModal from '../../components/AddTransactionModal/AddTransactionModal';
 import Delete from '../../components/Delete/Delete';
 import { TransactionContext } from '../../contexts/TransactionContext';
-import Modal_Edit_Delete from '../../components/Modal_Edit_Delete/Modal_Edit_Delete';
+import ModalEditDelete from '../../components/ModalEditDelete/ModalEditDelete';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
 import DangerIcon from '../../assets/icons/DangerCircle.svg';
 import plus from '../../assets/icons/Plus.svg';
-import Button_Date from '../../components/Button_Date/Button_Date';
+import ButtonDate from '../../components/ButtonDate/ButtonDate';
 import SortOrderDropdown from '../../components/SortOrderDropdown/SortOrderDropdown';
 import { filterByDateRange, sortTransactions } from '../../utils/dateHelpers';
 import './TransactionList.css';
@@ -119,8 +119,8 @@ function TransactionList() {
 
           {/* نوار ابزار فیلتر و مرتب‌سازی */}
           <div className="filter-sort-toolbar">
-            <Button_Date value={fromDate} onChange={setFromDate} label="از تاریخ" />
-            <Button_Date value={toDate} onChange={setToDate} label="تا تاریخ" />
+            <ButtonDate value={fromDate} onChange={setFromDate} label="از تاریخ" />
+            <ButtonDate value={toDate} onChange={setToDate} label="تا تاریخ" />
 
             <div className="sort-controls">
               <SortOrderDropdown
@@ -154,7 +154,7 @@ function TransactionList() {
 
       {/* منوی کشویی */}
       {menuInfo && (
-        <Modal_Edit_Delete
+        <ModalEditDelete
           ref={menuRef}
           x={menuInfo.x}
           y={menuInfo.y}

@@ -2,7 +2,7 @@
 
 import CalendarIcon from '../../assets/icons/Calendar.svg';
 
-import './Button_Date.css';
+import './ButtonDate.css';
 
 import DatePicker from 'react-multi-date-picker';
 
@@ -10,7 +10,7 @@ import persian from 'react-date-object/calendars/persian';
 
 import persian_fa from 'react-date-object/locales/persian_fa';
 
-function Button_Date({ value, onChange, label, placeholder = 'انتخاب تاریخ' }) {
+function ButtonDate({ value, onChange, label, placeholder = 'انتخاب تاریخ' }) {
   return (
     <div id="Button_Date">
       <div className="date-input">
@@ -36,4 +36,4 @@ function Button_Date({ value, onChange, label, placeholder = 'انتخاب تا�
   );
 }
 
-export default Button_Date;
+export default ButtonDate;

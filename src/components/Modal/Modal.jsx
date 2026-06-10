@@ -1,28 +1,38 @@
-// Modal.js
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import './Modal.css';
 
 function Modal({
   toggleModal,
   children,
-  editData, // داده‌های حالت ویرایش
-  onSetFormData, // تابع برای تنظیم formData
-  onSetDisplayDate, // تابع برای تنظیم displayDate
-  convertDigitsToPersian, // تابع تبدیل اعداد به فارسی
-  ToPersianWithSeparator, // تابع فرمت مبلغ
+  editData,
+  onSetFormData,
+  onSetDisplayDate,
+  convertDigitsToPersian,
+  ToPersianWithSeparator,
 }) {
-  // useEffect ای که قبلاً در AddTransactionModal بود، حالا اینجاست
+  // 👇 جلوگیری از اجرای دوباره useEffect
+  const hasHydrated = useRef(false);
+
   useEffect(() => {
-    if (editData && onSetFormData && onSetDisplayDate) {
-      onSetFormData({
-        date: editData.date || '',
-        amount: editData.amount ? ToPersianWithSeparator(editData.amount) : '',
-        type: editData.type || 'income',
-        description: editData.description || '',
-      });
-      onSetDisplayDate(convertDigitsToPersian(editData.date || ''));
+    if (!editData) {
+      hasHydrated.current = false;
+      return;
     }
-  }, [editData, onSetFormData, onSetDisplayDate, convertDigitsToPersian, ToPersianWithSeparator]);
+
+    // 👇 فقط یک بار اجرا شود
+    if (hasHydrated.current) return;
+
+    onSetFormData({
+      date: editData.date || '',
+      amount: editData.amount ? ToPersianWithSeparator(editData.amount) : '',
+      type: editData.type || 'income',
+      description: editData.description || '',
+    });
+
+    onSetDisplayDate(convertDigitsToPersian(editData.date || ''));
+
+    hasHydrated.current = true;
+  }, [editData]);
 
   return (
     <div className="modal">

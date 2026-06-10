@@ -11,7 +11,7 @@ import {
 import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
 import './MonthlyBarChart.css';
 
-// تبدیل ارقام انگلیسی به فارسی
+// تبدیل اعداد انگلیسی به فارسی
 const convertDigitsToPersian = (str) => {
   if (!str) return '';
   return String(str).replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
@@ -20,20 +20,12 @@ const convertDigitsToPersian = (str) => {
 function MonthlyBarChart({ data }) {
   // فرمت محور Y
   const formatYAxis = (value) => {
-    if (value >= 1000000) {
-      return convertDigitsToPersian(`${Math.round(value / 1000000)}M`);
-    }
-
-    if (value >= 1000) {
-      return convertDigitsToPersian(`${Math.round(value / 1000)}k`);
-    }
-
-    return convertDigitsToPersian(value.toString());
+    return ToPersianWithSeparator(value);
   };
 
   // فرمت Tooltip
   const formatTooltip = (value) => {
-    return ToPersianWithSeparator(value);
+    return [ToPersianWithSeparator(value), 'مبلغ'];
   };
 
   // فرمت محور X
@@ -69,7 +61,7 @@ function MonthlyBarChart({ data }) {
 
           <YAxis
             tickFormatter={formatYAxis}
-            width={110}
+            width={150}
             orientation="left"
             tick={{
               fontSize: 12,

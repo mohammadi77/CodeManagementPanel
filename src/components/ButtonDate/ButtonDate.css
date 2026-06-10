@@ -3,7 +3,7 @@
 ========================= */
 
 #Button_Date {
-  width: 100%;
+  width: 39% !important;
 }
 
 /* wrapper */
@@ -28,10 +28,11 @@
 #Button_Date .date-picker-wrapper {
   position: relative;
   width: 100%;
+  border-radius: 8px;
 }
 
 /* =========================
-   INPUT (ALL POSSIBLE CLASSES)
+   INPUT
 ========================= */
 
 #Button_Date .date-input-text,
@@ -46,7 +47,7 @@
   padding-left: 12px;
   padding-right: 12px;
 
-  border-radius: 8px;
+  border-radius: 8px !important;
   border: 1px solid #ccc;
 
   background: #fff;
@@ -59,9 +60,11 @@
   cursor: pointer;
   outline: none;
 }
+
 #Button_Date .date-input > label > span {
   width: 75px;
 }
+
 /* focus */
 #Button_Date .rmdp-input:focus {
   border-color: #4c8bf5 !important;
@@ -79,12 +82,13 @@
 
 #Button_Date .calendar-icon {
   position: absolute;
-  left: 50px;
-  top: 43% !important;
+  left: 40px;
+  top: 43%;
   transform: translateY(-50%);
   width: 20px;
   height: 20px;
-  pointer-events: none;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 /* =========================
@@ -92,12 +96,17 @@
 ========================= */
 
 #Button_Date .rmdp-wrapper,
-#Button_Date .rmdp-shadow,
-#Button_Date .rmdp-container {
+#Button_Date .rmdp-shadow {
   font-family: Vazirmatn, sans-serif !important;
   border-radius: 12px !important;
   overflow: hidden;
+}
+
+#Button_Date .rmdp-container {
+  font-family: Vazirmatn, sans-serif !important;
   width: auto !important;
+  overflow: visible !important;
+  border-radius: 0 !important;
 }
 
 /* calendar main */
@@ -137,7 +146,7 @@
 }
 
 /* =========================
-   TIME PICKER (if enabled)
+   TIME PICKER
 ========================= */
 
 #Button_Date .rmdp-time-picker {
@@ -148,6 +157,24 @@
    MOBILE
 ========================= */
 
+@media (max-width: 830px) {
+  #Button_Date {
+    width: 100% !important;
+  }
+
+  #Button_Date .rmdp-container {
+    width: 100% !important;
+  }
+
+  #Button_Date .calendar-icon {
+    left: 8px;
+  }
+
+  #Button_Date .date-input > label {
+    gap: 18px;
+  }
+}
+
 @media (max-width: 464px) {
   #Button_Date .date-input {
     width: 100%;
@@ -155,16 +182,5 @@
 
   #Button_Date .rmdp-input {
     width: 100%;
-  }
-}
-@media (max-width: 830px) {
-  #Button_Date .rmdp-container {
-    width: 100% !important;
-  }
-  #Button_Date .calendar-icon {
-    left: 8px;
-  }
-  #Button_Date .date-input > label {
-    gap: 18px;
   }
 }

@@ -77,6 +77,7 @@
   font-weight: 500;
 }
 .sort-order-dropdown > span {
+  width: 86px;
   font-family: Vazirmatn;
   font-weight: 400;
   font-style: Regular;
@@ -92,6 +93,16 @@
     font-size: 14px;
   }
 }
+@media (max-width: 863px) {
+  #Button_Date .calendar-icon {
+    left: 19px;
+  }
+}
+@media (max-width: 843px) {
+  #Button_Date .calendar-icon {
+    left: 10px;
+  }
+}
 @media (max-width: 464px) {
   .sort-order-dropdown {
     width: 100%;
@@ -99,7 +110,8 @@
   .dropdown-btn {
     width: 75%;
   }
+
   .sort-order-dropdown > span {
-    font-size: 16px;
+    font-size: 15px;
   }
 }

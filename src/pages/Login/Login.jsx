@@ -2,12 +2,15 @@
 import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import Logo from '../../assets/icons/Logo Placeholder.svg';
 import './Login.css';
 
 function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
@@ -15,24 +18,32 @@ function Login() {
     return <Navigate to="/dashboard" replace />;
   }
 
-  const handleLogin = async ({ username, password }) => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     setError('');
 
-    if (!username.trim() || !password.trim()) {
-      setError('لطفاً نام کاربری و رمز عبور را وارد کنید');
+    if (!email.trim() || !password.trim()) {
+      setError('لطفاً ایمیل و رمز عبور را وارد کنید');
       return;
     }
 
     setIsLoading(true);
 
     try {
-      if (username === 'admin' && password === '123456789') {
+      if (email === 'admin' && password === '123456789') {
         const fakeToken = 'fake-jwt-token';
-        const userData = { username, name: 'مدیر سیستم', role: 'admin' };
+
+        const userData = {
+          email,
+          name: 'مدیر سیستم',
+          role: 'admin',
+        };
+
         login(fakeToken, userData);
         navigate('/dashboard');
       } else {
-        setError('نام کاربری یا رمز عبور اشتباه است');
+        setError('ایمیل یا رمز عبور اشتباه است');
       }
     } catch (err) {
       setError('خطا در ارتباط با سرور');
@@ -43,7 +54,43 @@ function Login() {
 
   return (
     <div className="login-wrapper">
-      <LoginForm onSubmit={handleLogin} isLoading={isLoading} error={error} />
+      <div className="sing-in">
+        <img src={Logo} alt="لوگو" />
+
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="email">
+            <span>ایمیل</span>
+          </label>
+
+          <input
+            id="email"
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            autoComplete="username"
+            disabled={isLoading}
+          />
+
+          <label htmlFor="password">
+            <span>رمز ورود</span>
+          </label>
+
+          <input
+            id="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            autoComplete="current-password"
+            disabled={isLoading}
+          />
+
+          {error && <div className="error">{error}</div>}
+
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? 'در حال ورود...' : 'ورود'}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
