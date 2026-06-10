@@ -1,4 +1,3 @@
-// src/components/SortOrderDropdown/SortOrderDropdown.jsx
 import { useState, useRef, useEffect } from 'react';
 import './SortOrderDropdown.css';
 
@@ -9,22 +8,23 @@ function SortOrderDropdown({ value, onChange, placeholder = 'انتخاب کنی
   const options = [
     { value: 'asc', label: 'صعودی' },
     { value: 'desc', label: 'نزولی' },
+    { value: 'newest', label: 'جدیدترین' },
   ];
 
-  const selectedLabel = value ? options.find((opt) => opt.value === value)?.label : placeholder;
+  const selectedLabel = options.find((opt) => opt.value === value)?.label || placeholder;
 
   const handleSelect = (val) => {
     onChange(val);
     setIsOpen(false);
   };
 
-  // بستن منو با کلیک بیرون
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setIsOpen(false);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
@@ -32,10 +32,12 @@ function SortOrderDropdown({ value, onChange, placeholder = 'انتخاب کنی
   return (
     <div className="sort-order-dropdown" ref={dropdownRef}>
       <span>ترتیب نمایش</span>
+
       <button type="button" className="dropdown-btn" onClick={() => setIsOpen(!isOpen)}>
         {selectedLabel}
         <span className="dropdown-arrow">{isOpen ? ' ▲' : ' ▼'}</span>
       </button>
+
       {isOpen && (
         <div className="dropdown-menu">
           {options.map((opt) => (

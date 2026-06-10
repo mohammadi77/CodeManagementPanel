@@ -1,100 +1,12 @@
 {
   "transactions": [
     {
-      "date": "۱۴۰۵/۰۳/۰۴",
-      "amount": 250,
-      "type": "income",
-      "description": "کیف",
-      "title": "کیف",
-      "id": "h72QyAFxS7c"
-    },
-    {
       "date": "۱۴۰۵/۰۳/۰۵",
       "amount": 4444,
       "type": "income",
       "description": "غذا",
       "title": "غذا",
       "id": "INc8SAWMi90"
-    },
-    {
-      "date": "۱۴۰۵/۰۲/۰۷",
-      "amount": 120,
-      "type": "expense",
-      "description": "کتاب",
-      "title": "کتاب",
-      "id": "jjYIgFsUIQc"
-    },
-    {
-      "id": "T9RSO9S_Z48",
-      "date": "۱۴۰۵/۰۳/۲۸",
-      "amount": 150,
-      "type": "expense",
-      "description": "لباس",
-      "title": "لباس"
-    },
-    {
-      "id": "_JWSRb3hrBU",
-      "date": "۱۴۰۵/۰۳/۲۶",
-      "amount": 34,
-      "type": "expense",
-      "description": "زبان",
-      "title": "زبان"
-    },
-    {
-      "id": "jmisPanxdnw",
-      "date": "۱۴۰۵/۰۱/۱۸",
-      "amount": 444,
-      "type": "income",
-      "description": "۵۶۷",
-      "title": "۵۶۷"
-    },
-    {
-      "id": "M960jxbKVCE",
-      "date": "۱۴۰۵/۰۳/۲۵",
-      "amount": 555,
-      "type": "income",
-      "description": "فیی",
-      "title": "فیی"
-    },
-    {
-      "id": "-DTNa2qN6AY",
-      "date": "۱۴۰۵/۰۳/۰۲",
-      "amount": 4,
-      "type": "income",
-      "description": "کتاب  کتاب کتاب کتاب ",
-      "title": "کتاب  کتاب کتاب کتاب "
-    },
-    {
-      "id": "v1LphJKBRSM",
-      "date": "۱۴۰۵/۰۳/۰۴",
-      "amount": 444,
-      "type": "income",
-      "description": "شس",
-      "title": "شس"
-    },
-    {
-      "id": "B_NyGasdD8s",
-      "date": "۱۴۰۵/۰۳/۱۶",
-      "amount": 444,
-      "type": "income",
-      "description": "بی",
-      "title": "بی"
-    },
-    {
-      "id": "iZJ9c9eMgBI",
-      "date": "۱۴۰۵/۰۳/۰۳",
-      "amount": 333,
-      "type": "income",
-      "description": "ععع",
-      "title": "ععع"
-    },
-    {
-      "id": "JF3WsTwo4Ms",
-      "date": "۱۴۰۵/۰۳/۱۲",
-      "amount": 4444,
-      "type": "income",
-      "description": "عععثیصق",
-      "title": "عععثیصق"
     },
     {
       "id": "iAJWyK5lNZw",
@@ -105,30 +17,6 @@
       "title": "کتاب کتاب کتاب کتاب"
     },
     {
-      "id": "coeudUgKc5E",
-      "date": "۱۴۰۵/۰۳/۰۴",
-      "amount": 12222,
-      "type": "expense",
-      "description": "۱",
-      "title": "۱"
-    },
-    {
-      "id": "sY9D2w5RmWI",
-      "date": "۱۴۰۵/۰۳/۰۵",
-      "amount": 77,
-      "type": "income",
-      "description": "۷۷",
-      "title": "۷۷"
-    },
-    {
-      "id": "3p6_5GAN8DU",
-      "date": "۱۴۰۵/۰۳/۰۵",
-      "amount": 4,
-      "type": "income",
-      "description": "dsf",
-      "title": "dsf"
-    },
-    {
       "id": "_gd0FpMGegU",
       "date": "۱۴۰۴/۰۲/۰۱",
       "amount": 44,
@@ -137,20 +25,12 @@
       "title": "میز"
     },
     {
-      "id": "2hdA9RIGoJQ",
-      "date": "۱۴۰۵/۰۳/۱۲",
-      "amount": 5,
-      "type": "income",
-      "description": "۵",
-      "title": "۵"
-    },
-    {
-      "id": "InDvBahU_c8",
+      "id": "Z-mNYIUvzj0",
       "date": "۱۴۰۵/۰۳/۲۰",
-      "amount": 3,
+      "amount": 55,
       "type": "income",
-      "description": "۳",
-      "title": "۳"
+      "description": "الان",
+      "title": "الان"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

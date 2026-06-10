@@ -6,13 +6,11 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  // بررسی وجود توکن در localStorage هنگام بارگذاری اولیه
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
-      // در اینجا می‌توانید اعتبار توکن را با سرور بررسی کنید (اختیاری)
       setIsAuthenticated(true);
-      setUser({ name: 'کاربر' }); // اطلاعات کاربر را از توکن یا state بگیرید
+      setUser({ name: 'کاربر' });
     }
   }, []);
 

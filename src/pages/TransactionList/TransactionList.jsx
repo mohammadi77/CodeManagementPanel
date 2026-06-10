@@ -14,7 +14,6 @@ import SortOrderDropdown from '../../components/SortOrderDropdown/SortOrderDropd
 import { filterByDateRange, sortTransactions } from '../../utils/dateHelpers';
 import './TransactionList.css';
 
-// تابع کمکی: تبدیل ارقام انگلیسی به فارسی (بدون تغییر جداکننده‌ها)
 const convertDigitsToPersian = (str) => {
   if (!str) return '';
   return str.replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
@@ -24,7 +23,6 @@ function TransactionList() {
   const { transactions, dataAdd, dataDelete, dataEdit, loading, error } =
     useContext(TransactionContext);
 
-  // State مودال‌ها و منو
   const [modalAdd, setModalAdd] = useState(false);
   const [menuInfo, setMenuInfo] = useState(null);
   const [modalDelete, setModalDelete] = useState(false);
@@ -33,20 +31,20 @@ function TransactionList() {
   const [editTransaction, setEditTransaction] = useState(null);
   const menuRef = useRef(null);
 
-  // State فیلتر و مرتب‌سازی
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
-  const [sortOrder, setSortOrder] = useState(null);
 
-  // محاسبه لیست اصلی: فیلتر + مرتب‌سازی (مقادیر اصلی برای منطق پشت صحنه)
+  // 🔥 فقط اصلاح مهم اینجاست
+  const [sortOrder, setSortOrder] = useState('date-desc');
+
   const filteredAndSortedTransactions = useMemo(() => {
     if (!transactions) return [];
+
     const filtered = filterByDateRange(transactions, fromDate, toDate);
-    if (sortOrder === null) return filtered;
-    return sortTransactions(filtered, sortOrder);
+
+    return sortTransactions(filtered, sortOrder || 'date-desc');
   }, [transactions, fromDate, toDate, sortOrder]);
 
-  // لیست نمایشی: تاریخ و شرح با اعداد فارسی (برای نمایش در جدول)
   const displayTransactions = useMemo(() => {
     return filteredAndSortedTransactions.map((item) => ({
       ...item,
@@ -55,7 +53,6 @@ function TransactionList() {
     }));
   }, [filteredAndSortedTransactions]);
 
-  // توابع کمکی
   const toggleAddModal = () => setModalAdd(!modalAdd);
   const toggleDeleteModal = () => setModalDelete(!modalDelete);
   const toggleEditModal = () => setModalEdit(!modalEdit);
@@ -117,18 +114,15 @@ function TransactionList() {
             </button>
           </div>
 
-          {/* نوار ابزار فیلتر و مرتب‌سازی */}
           <div className="filter-sort-toolbar">
             <ButtonDate value={fromDate} onChange={setFromDate} label="از تاریخ" />
             <ButtonDate value={toDate} onChange={setToDate} label="تا تاریخ" />
 
-            <div className="sort-controls">
-              <SortOrderDropdown
-                value={sortOrder}
-                onChange={setSortOrder}
-                placeholder="انتخاب کنید"
-              />
-            </div>
+            <SortOrderDropdown
+              value={sortOrder}
+              onChange={setSortOrder}
+              placeholder="انتخاب کنید"
+            />
           </div>
 
           {filteredAndSortedTransactions.length === 0 ? (
@@ -145,14 +139,12 @@ function TransactionList() {
         </div>
       </div>
 
-      {/* مودال افزودن */}
       {modalAdd && (
         <Modal toggleModal={toggleAddModal}>
           <AddTransactionModal toggleModal={toggleAddModal} dataAdd={dataAdd} />
         </Modal>
       )}
 
-      {/* منوی کشویی */}
       {menuInfo && (
         <ModalEditDelete
           ref={menuRef}
@@ -165,14 +157,12 @@ function TransactionList() {
         />
       )}
 
-      {/* مودال حذف */}
       {modalDelete && (
         <Modal toggleModal={toggleDeleteModal}>
           <Delete dataDelete={confirmDelete} toggleModal={toggleDeleteModal} id={deleteId} />
         </Modal>
       )}
 
-      {/* مودال ویرایش */}
       {modalEdit && (
         <Modal toggleModal={closeEditModal}>
           <AddTransactionModal

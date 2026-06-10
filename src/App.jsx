@@ -39,11 +39,10 @@ function App() {
                 <TransactionList />
               </ProtectedRoute>
             }
-          />
+          />{' '}
+          <Route path="*" element={<NotFound />} />
         </Route>
-
         {/* صفحه 404 */}
-        <Route path="*" element={<NotFound />} />
       </Routes>
     </TransactionProvider>
   );

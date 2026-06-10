@@ -5,7 +5,6 @@ const ProtectedRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    // کاربر وارد نشده → به صفحه لاگین هدایت شود
     return <Navigate to="/Login" replace />;
   }
 

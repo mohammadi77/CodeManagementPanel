@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import CalendarIcon from '../../assets/icons/Calendar.svg';
 import './ButtonDate.css';
 
@@ -8,6 +8,19 @@ import persian_fa from 'react-date-object/locales/persian_fa';
 
 function ButtonDate({ value, onChange, label, placeholder = 'انتخاب تاریخ' }) {
   const pickerRef = useRef();
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 830);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleChange = (date) => {
     onChange(date);
@@ -30,7 +43,7 @@ function ButtonDate({ value, onChange, label, placeholder = 'انتخاب تار
               onChange={handleChange}
               calendar={persian}
               locale={persian_fa}
-              calendarPosition="bottom-right"
+              calendarPosition={isMobile ? 'bottom-left' : 'bottom-right'}
               inputClass="date-input-text"
               placeholder={placeholder}
             />

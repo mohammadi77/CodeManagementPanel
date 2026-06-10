@@ -1,4 +1,3 @@
-// تبدیل اعداد فارسی به انگلیسی
 export const FaToEnNumber = (value) => {
   if (!value) return '';
   const str = String(value);
