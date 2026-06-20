@@ -1,27 +1,39 @@
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator'; // برای Tooltip
+import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
 import './DonutChart.css';
 
-// تابع کمکی برای تبدیل ارقام انگلیسی به فارسی (بدون جداکننده)
+// تبدیل اعداد انگلیسی به فارسی
 const convertDigitsToPersian = (num) => {
   if (num === undefined || num === null) return '';
   return String(num).replace(/[0-9]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[d]);
 };
 
 function DonutChart({ income, cost }) {
+  const hasData = income > 0 || cost > 0;
+
   const data = [
-    { name: 'درآمد', value: income, color: '#82ca9d' },
-    { name: 'هزینه', value: cost, color: '#8884d8' },
+    { name: 'درآمد', value: income || 0, color: '#82ca9d' },
+    { name: 'هزینه', value: cost || 0, color: '#8884d8' },
   ];
 
-  // لیبل بیرون دایره با درصد فارسی
+  // اگر داده‌ای وجود نداشت
+  if (!hasData) {
+    return (
+      <div className="donut-chart-wrapper">
+        <h3>نسبت درآمد به هزینه</h3>
+
+        <div className="chart-empty">داده‌ای موجود نیست</div>
+      </div>
+    );
+  }
+
+  // لیبل بیرون دایره
   const renderCustomLabel = ({ cx, cy, midAngle, outerRadius, percent, name }) => {
     const RADIAN = Math.PI / 180;
     const radius = outerRadius + 35;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
-    // درصد به عدد انگلیسی، سپس تبدیل به فارسی
     const percentValue = (percent * 100).toFixed(0);
     const persianPercent = convertDigitsToPersian(percentValue);
 
@@ -35,9 +47,6 @@ function DonutChart({ income, cost }) {
         style={{
           fontSize: '13px',
           fontWeight: 'bold',
-          backgroundColor: '#fff',
-          padding: '2px 4px',
-          borderRadius: '4px',
         }}
       >
         {`${name}: ${persianPercent}%`}
@@ -45,7 +54,6 @@ function DonutChart({ income, cost }) {
     );
   };
 
-  // فرمت Tooltip با جداکننده هزارگان و اعداد فارسی
   const formatTooltip = (value) => {
     return ToPersianWithSeparator(value);
   };
@@ -53,6 +61,7 @@ function DonutChart({ income, cost }) {
   return (
     <div className="donut-chart-wrapper">
       <h3>نسبت درآمد به هزینه</h3>
+
       <ResponsiveContainer width="100%" height={350}>
         <PieChart>
           <Pie
@@ -61,7 +70,6 @@ function DonutChart({ income, cost }) {
             cy="50%"
             innerRadius={70}
             outerRadius={110}
-            fill="#8884d8"
             paddingAngle={5}
             dataKey="value"
             labelLine={true}
@@ -71,6 +79,7 @@ function DonutChart({ income, cost }) {
               <Cell key={`cell-${index}`} fill={entry.color} />
             ))}
           </Pie>
+
           <Tooltip formatter={formatTooltip} />
           <Legend />
         </PieChart>

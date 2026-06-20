@@ -5,16 +5,19 @@ import NotFound from './pages/NotFound/NotFound';
 import Login from './pages/Login/Login';
 import TransactionList from './pages/TransactionList/TransactionList';
 import { TransactionProvider } from './contexts/TransactionContext';
-import ProtectedRoute from './components/ProtectedRoute'; // اضافه کن
+import ProtectedRoute from './components/ProtectedRoute';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
     <TransactionProvider>
       <Routes>
-        {/* صفحه لاگین خارج از MainLayout (بدون احراز هویت) */}
-        <Route path="/Login" element={<Login />} />
+        {/* صفحه لاگین خارج از MainLayout */}
+        <Route path="/login" element={<Login />} />
 
-        {/* مسیرهای محافظت شده داخل MainLayout */}
+        {/* مسیرهای محافظت شده */}
         <Route path="/" element={<MainLayout />}>
           <Route
             index
@@ -24,6 +27,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="dashboard"
             element={
@@ -32,6 +36,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="admin"
             element={
@@ -39,11 +44,14 @@ function App() {
                 <TransactionList />
               </ProtectedRoute>
             }
-          />{' '}
+          />
+
           <Route path="*" element={<NotFound />} />
         </Route>
-        {/* صفحه 404 */}
       </Routes>
+
+      {/* Toast باید اینجا باشه */}
+      <ToastContainer position="top-right" />
     </TransactionProvider>
   );
 }

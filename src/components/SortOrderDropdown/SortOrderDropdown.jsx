@@ -8,7 +8,7 @@ function SortOrderDropdown({ value, onChange, placeholder = 'انتخاب کنی
   const dropdownRef = useRef(null);
 
   const options = [
-    { value: '1', label: 'انتخاب کنید' },
+    { value: '', label: 'انتخاب کنید' },
     { value: 'newest', label: 'جدیدترین' },
     { value: 'oldest', label: 'قدیمی‌ترین' },
     { value: 'highest_expense', label: 'بالاترین هزینه' },
@@ -32,7 +32,10 @@ function SortOrderDropdown({ value, onChange, placeholder = 'انتخاب کنی
     };
 
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   return (

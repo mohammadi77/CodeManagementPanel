@@ -21,6 +21,7 @@
     "react-element-popper": "^2.1.7",
     "react-multi-date-picker": "^4.5.2",
     "react-router-dom": "^7.11.0",
+    "react-toastify": "^11.1.0",
     "rechart": "^0.0.1",
     "recharts": "^3.7.0"
   },

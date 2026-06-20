@@ -5,12 +5,14 @@
   text-align: center;
   direction: rtl;
   width: 100%;
+  font-family: Vazirmatn;
 }
 
 .donut-chart-wrapper h3 {
   margin-bottom: 12px;
   color: #333;
   font-size: 1.2rem;
+  font-family: Vazirmatn;
 }
 
 @media (max-width: 600px) {

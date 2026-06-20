@@ -1,4 +1,3 @@
-// src/pages/Login/Login.jsx
 import { useState } from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
@@ -20,7 +19,6 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     setError('');
 
     if (!email.trim() || !password.trim()) {
@@ -40,7 +38,13 @@ function Login() {
           role: 'admin',
         };
 
+        // login
         login(fakeToken, userData);
+
+        // برای toast خوش‌آمدگویی
+        sessionStorage.setItem('welcome', JSON.stringify({ name: userData.name }));
+
+        // انتقال
         navigate('/dashboard');
       } else {
         setError('ایمیل یا رمز عبور اشتباه است');

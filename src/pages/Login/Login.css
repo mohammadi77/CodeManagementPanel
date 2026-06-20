@@ -58,6 +58,8 @@
 
 .sing-in input {
   width: 100%;
+  text-align: left;
+
   max-width: 320px;
   height: 40px;
   border-radius: 6px;

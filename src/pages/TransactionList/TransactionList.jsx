@@ -34,15 +34,16 @@ function TransactionList() {
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
 
-  // 🔥 فقط اصلاح مهم اینجاست
-  const [sortOrder, setSortOrder] = useState('date-desc');
+  // Dropdown روی "انتخاب کنید" قرار می‌گیرد
+  const [sortOrder, setSortOrder] = useState('');
 
   const filteredAndSortedTransactions = useMemo(() => {
     if (!transactions) return [];
 
     const filtered = filterByDateRange(transactions, fromDate, toDate);
 
-    return sortTransactions(filtered, sortOrder || 'date-desc');
+    // اگر چیزی انتخاب نشده بود جدیدترین‌ها نمایش داده شوند
+    return sortTransactions(filtered, sortOrder || 'newest');
   }, [transactions, fromDate, toDate, sortOrder]);
 
   const displayTransactions = useMemo(() => {
@@ -53,14 +54,28 @@ function TransactionList() {
     }));
   }, [filteredAndSortedTransactions]);
 
-  const toggleAddModal = () => setModalAdd(!modalAdd);
-  const toggleDeleteModal = () => setModalDelete(!modalDelete);
-  const toggleEditModal = () => setModalEdit(!modalEdit);
+  const toggleAddModal = () => {
+    setModalAdd(!modalAdd);
+  };
+
+  const toggleDeleteModal = () => {
+    setModalDelete(!modalDelete);
+  };
+
+  const toggleEditModal = () => {
+    setModalEdit(!modalEdit);
+  };
 
   const handleMenuClick = (e, id) => {
     e.stopPropagation();
+
     const rect = e.currentTarget.getBoundingClientRect();
-    setMenuInfo({ id, x: rect.right, y: rect.bottom });
+
+    setMenuInfo({
+      id,
+      x: rect.right,
+      y: rect.bottom,
+    });
   };
 
   useEffect(() => {
@@ -69,8 +84,12 @@ function TransactionList() {
         setMenuInfo(null);
       }
     };
+
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
   }, []);
 
   const handleDeleteClick = (id) => {
@@ -80,17 +99,22 @@ function TransactionList() {
   };
 
   const confirmDelete = () => {
-    if (deleteId) dataDelete(deleteId);
+    if (deleteId) {
+      dataDelete(deleteId);
+    }
+
     toggleDeleteModal();
     setDeleteId(null);
   };
 
   const handleEditClick = (id) => {
     const transaction = transactions.find((t) => t.id === id);
+
     if (transaction) {
       setEditTransaction(transaction);
       toggleEditModal();
     }
+
     setMenuInfo(null);
   };
 
@@ -108,6 +132,7 @@ function TransactionList() {
         <div className="div-First">
           <div className="header-list">
             <h2>تراکنش ها</h2>
+
             <button onClick={toggleAddModal} className="cursor-pointer">
               <img src={plus} id="icon" alt="" />
               افزودن تراکنش
@@ -116,6 +141,7 @@ function TransactionList() {
 
           <div className="filter-sort-toolbar">
             <ButtonDate value={fromDate} onChange={setFromDate} label="از تاریخ" />
+
             <ButtonDate value={toDate} onChange={setToDate} label="تا تاریخ" />
 
             <SortOrderDropdown

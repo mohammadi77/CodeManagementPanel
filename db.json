@@ -23,6 +23,30 @@
       "description": "میز",
       "title": "میز",
       "id": "hbDEFgGLzYk"
+    },
+    {
+      "id": "vCrzLitWj4U",
+      "date": "۱۴۰۵/۰۳/۳۰",
+      "amount": 3,
+      "type": "expense",
+      "description": "۳",
+      "title": "۳"
+    },
+    {
+      "id": "15shuIoIEDA",
+      "date": "۱۴۰۵/۰۳/۱۶",
+      "amount": 3,
+      "type": "income",
+      "description": "۳",
+      "title": "۳"
+    },
+    {
+      "id": "8dfr-UszktQ",
+      "date": "۱۴۰۵/۰۳/۳۱",
+      "amount": 5,
+      "type": "income",
+      "description": "۵",
+      "title": "۵"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

@@ -18,6 +18,17 @@ const convertDigitsToPersian = (str) => {
 };
 
 function MonthlyBarChart({ data }) {
+  // اگر داده‌ای وجود نداشت
+  if (!data || data.length === 0) {
+    return (
+      <div className="bar-chart-wrapper">
+        <h3>درآمد و هزینه ماهانه</h3>
+
+        <div className="chart-empty">داده‌ای موجود نیست</div>
+      </div>
+    );
+  }
+
   // فرمت محور Y
   const formatYAxis = (value) => {
     return ToPersianWithSeparator(value);
@@ -61,7 +72,7 @@ function MonthlyBarChart({ data }) {
 
           <YAxis
             tickFormatter={formatYAxis}
-            width={150}
+            width={60}
             orientation="left"
             tick={{
               fontSize: 12,

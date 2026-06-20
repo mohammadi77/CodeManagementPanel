@@ -1,5 +1,5 @@
-// src/components/Pagination/Pagination.jsx
 import './Pagination.css';
+import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
 
 function Pagination({ currentPage, totalPages, onPageChange }) {
   if (totalPages <= 1) return null;
@@ -7,8 +7,10 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
   const getPageButtons = () => {
     const buttons = [];
     const maxVisible = 5;
+
     let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
     let endPage = Math.min(totalPages, startPage + maxVisible - 1);
+
     if (endPage - startPage + 1 < maxVisible) {
       startPage = Math.max(1, endPage - maxVisible + 1);
     }
@@ -21,10 +23,12 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
       buttons.unshift('...');
       buttons.unshift(1);
     }
+
     if (endPage < totalPages) {
       buttons.push('...');
       buttons.push(totalPages);
     }
+
     return [...new Set(buttons)];
   };
 
@@ -51,7 +55,8 @@ function Pagination({ currentPage, totalPages, onPageChange }) {
             className={`pagination-btn ${currentPage === btn ? 'active' : ''}`}
             onClick={() => onPageChange(btn)}
           >
-            {btn}
+            {/* ✅ تبدیل عدد به فارسی */}
+            {ToPersianWithSeparator(btn)}
           </button>
         )
       )}

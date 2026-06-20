@@ -1,29 +1,64 @@
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useMemo, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+
 import { TransactionContext } from '../../contexts/TransactionContext';
 import DonutChart from '../../components/DonutChart/DonutChart';
 import MonthlyBarChart from '../../components/MonthlyBarChart/MonthlyBarChart';
 import CustomDropdown from '../../components/CustomDropdown/CustomDropdown';
 import Loading from '../../components/Loading/Loading';
 import Error from '../../components/Error/Error';
+
 import { ToPersianWithSeparator } from '../../utils/ToPersianWithSeparator';
 import { getPersianMonthName } from '../../utils/getPersianMonthName';
 import { filterTransactionsByDateRange } from '../../utils/filterTransactionsByDateRange';
+
+import { toast } from 'react-toastify';
+
 import './Dashboard.css';
 
 function Dashboard() {
   const { transactions, loading, error } = useContext(TransactionContext);
+  const location = useLocation();
 
   const [selectedYear, setSelectedYear] = useState('');
   const [fromMonth, setFromMonth] = useState('');
   const [toMonth, setToMonth] = useState('');
 
-  const yearOptions = [
-    { value: '', label: 'همه سال‌ها' },
-    { value: '1403', label: '1403' },
-    { value: '1404', label: '1404' },
-    { value: '1405', label: '1405' },
-    { value: '1406', label: '1406' },
-  ];
+  // ✅ Toast خوش‌آمدگویی فقط یک‌بار
+  useEffect(() => {
+    const welcomeData = sessionStorage.getItem('welcome');
+
+    if (welcomeData) {
+      const { name } = JSON.parse(welcomeData);
+
+      toast.success(`خوش آمدید ${name} 👋`);
+
+      sessionStorage.removeItem('welcome');
+    }
+  }, []);
+
+  // استخراج سال‌ها از تراکنش‌ها
+  const yearOptions = useMemo(() => {
+    const years = [
+      ...new Set(
+        transactions
+          .filter((t) => t.date)
+          .map((t) => {
+            const englishDate = t.date.replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+
+            return englishDate.split('/')[0];
+          })
+      ),
+    ].sort((a, b) => Number(a) - Number(b));
+
+    return [
+      { value: '', label: 'همه سال‌ها' },
+      ...years.map((year) => ({
+        value: year,
+        label: year,
+      })),
+    ];
+  }, [transactions]);
 
   const monthOptions = [
     { value: '', label: 'انتخاب ماه' },
@@ -67,14 +102,10 @@ function Dashboard() {
       if (!t.date) return;
 
       const monthName = getPersianMonthName(t.date);
-
       if (!monthName) return;
 
       if (!months[monthName]) {
-        months[monthName] = {
-          income: 0,
-          cost: 0,
-        };
+        months[monthName] = { income: 0, cost: 0 };
       }
 
       if (t.type === 'income') {
